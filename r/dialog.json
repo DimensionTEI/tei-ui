@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: dialog",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/dialog.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport * as DialogPrimitive from '@radix-ui/react-dialog';\nimport { X } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\nexport const Dialog = DialogPrimitive.Root;\nexport const DialogTrigger = DialogPrimitive.Trigger;\nexport const DialogPortal = DialogPrimitive.Portal;\nexport const DialogClose = DialogPrimitive.Close;\n\nexport const DialogOverlay = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Overlay>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Overlay\n    ref={ref}\n    className={cn(\n      'fixed inset-0 z-50 bg-[var(--tei-overlay)] backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',\n      className,\n    )}\n    {...props}\n  />\n));\nDialogOverlay.displayName = 'DialogOverlay';\n\nexport const DialogContent = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {\n    hideCloseButton?: boolean;\n  }\n>(({ className, children, hideCloseButton = false, ...props }, ref) => (\n  <DialogPortal>\n    <DialogOverlay />\n    <DialogPrimitive.Content\n      ref={ref}\n      className={cn(\n        'fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-lg border border-[var(--tei-border)] bg-[var(--tei-surface)] p-6 shadow-[var(--tei-shadow-md)] focus:outline-none',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      {!hideCloseButton && (\n        <DialogPrimitive.Close className=\"absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[var(--tei-accent)]\">\n          <X className=\"h-4 w-4\" />\n          <span className=\"sr-only\">Cerrar</span>\n        </DialogPrimitive.Close>\n      )}\n    </DialogPrimitive.Content>\n  </DialogPortal>\n));\nDialogContent.displayName = 'DialogContent';\n\nexport const DialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn('flex flex-col gap-1.5 text-left', className)} {...props} />\n);\n\nexport const DialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (\n  <div className={cn('flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)} {...props} />\n);\n\nexport const DialogTitle = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Title>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Title\n    ref={ref}\n    className={cn('text-lg font-semibold text-[var(--tei-text-strong)]', className)}\n    {...props}\n  />\n));\nDialogTitle.displayName = 'DialogTitle';\n\nexport const DialogDescription = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Description>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Description\n    ref={ref}\n    className={cn('text-sm text-[var(--tei-muted)]', className)}\n    {...props}\n  />\n));\nDialogDescription.displayName = 'DialogDescription';\n",
+      "type": "registry:ui",
+      "target": "components/ui/dialog.tsx"
+    }
+  ]
+}

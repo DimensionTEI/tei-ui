@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: table",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/table.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\nexport const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(\n  ({ className, ...props }, ref) => (\n    <div className=\"relative w-full overflow-x-auto\">\n      <table ref={ref} className={cn('w-full caption-bottom text-sm', className)} {...props} />\n    </div>\n  ),\n);\nTable.displayName = 'Table';\n\nexport const TableHeader = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(\n  ({ className, ...props }, ref) => (\n    <thead ref={ref} className={cn('[&_tr]:border-b border-[var(--tei-border)]', className)} {...props} />\n  ),\n);\nTableHeader.displayName = 'TableHeader';\n\nexport const TableBody = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(\n  ({ className, ...props }, ref) => (\n    <tbody ref={ref} className={cn('[&_tr:last-child]:border-0', className)} {...props} />\n  ),\n);\nTableBody.displayName = 'TableBody';\n\nexport const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(\n  ({ className, ...props }, ref) => (\n    <tr\n      ref={ref}\n      className={cn(\n        'border-b border-[var(--tei-border)] transition-colors hover:bg-[var(--tei-bg-secondary)]/60',\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTableRow.displayName = 'TableRow';\n\nexport const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(\n  ({ className, ...props }, ref) => (\n    <th\n      ref={ref}\n      className={cn(\n        'h-10 px-3 text-left align-middle text-xs font-semibold uppercase tracking-wide text-[var(--tei-muted)]',\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTableHead.displayName = 'TableHead';\n\nexport const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<HTMLTableCellElement>>(\n  ({ className, ...props }, ref) => (\n    <td ref={ref} className={cn('p-3 align-middle', className)} {...props} />\n  ),\n);\nTableCell.displayName = 'TableCell';\n",
+      "type": "registry:ui",
+      "target": "components/ui/table.tsx"
+    }
+  ]
+}

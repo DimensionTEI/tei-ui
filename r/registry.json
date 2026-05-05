@@ -1,0 +1,157 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "tei-ui",
+  "homepage": "https://github.com/DimensionTEI/tei-ui",
+  "items": [
+    {
+      "name": "tokens",
+      "type": "registry:style",
+      "description": "Tokens TEI (CSS vars, paleta clara/oscura, fuentes Nunito + JetBrains Mono). Instala primero — todos los componentes dependen."
+    },
+    {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "Helper cn() para componer clases (clsx + tailwind-merge)",
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: avatar",
+      "dependencies": [
+        "@radix-ui/react-avatar"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: badge",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: button",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: card",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "code",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: code",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: dialog",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: dropdown-menu",
+      "dependencies": [
+        "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: input",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: label",
+      "dependencies": [
+        "@radix-ui/react-label"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: separator",
+      "dependencies": [
+        "@radix-ui/react-separator"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: sheet",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: table",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: textarea",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    }
+  ]
+}

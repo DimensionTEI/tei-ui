@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: textarea",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/textarea.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\nexport type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;\n\nexport const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(\n  ({ className, ...props }, ref) => (\n    <textarea\n      ref={ref}\n      className={cn(\n        'flex min-h-[80px] w-full rounded-md border border-[var(--tei-border)] bg-[var(--tei-surface)] px-3 py-2 text-sm text-[var(--tei-text)] placeholder:text-[var(--tei-muted)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tei-focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--tei-bg)] disabled:cursor-not-allowed disabled:opacity-50',\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTextarea.displayName = 'Textarea';\n",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx"
+    }
+  ]
+}

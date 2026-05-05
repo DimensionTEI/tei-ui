@@ -1,0 +1,14 @@
+{
+  "name": "tei-ui-registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Registry shadcn-compatible con los componentes y tokens del sistema de diseño Dimension TEI.",
+  "scripts": {
+    "build": "tsx scripts/build-registry.ts",
+    "download-fonts": "tsx scripts/download-fonts.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

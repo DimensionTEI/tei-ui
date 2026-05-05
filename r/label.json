@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: label",
+  "dependencies": [
+    "@radix-ui/react-label"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/label.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport * as LabelPrimitive from '@radix-ui/react-label';\nimport { cn } from '@/lib/utils';\n\nexport const Label = React.forwardRef<\n  React.ElementRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <LabelPrimitive.Root\n    ref={ref}\n    className={cn('text-sm font-medium text-[var(--tei-text)]', className)}\n    {...props}\n  />\n));\nLabel.displayName = 'Label';\n",
+      "type": "registry:ui",
+      "target": "components/ui/label.tsx"
+    }
+  ]
+}

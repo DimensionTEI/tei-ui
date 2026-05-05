@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: button",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/button.tsx",
+      "content": "import * as React from 'react';\nimport { Slot } from '@radix-ui/react-slot';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst buttonVariants = cva(\n  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tei-focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--tei-bg)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0',\n  {\n    variants: {\n      variant: {\n        default:\n          'bg-[var(--tei-accent)] text-[var(--tei-accent-fg)] hover:bg-[var(--tei-accent-hover)]',\n        secondary:\n          'bg-[var(--tei-surface)] text-[var(--tei-text)] border border-[var(--tei-border)] hover:bg-[var(--tei-bg-secondary)]',\n        ghost:\n          'text-[var(--tei-text)] hover:bg-[var(--tei-bg-secondary)]',\n        outline:\n          'border border-[var(--tei-border)] bg-transparent text-[var(--tei-text)] hover:bg-[var(--tei-bg-secondary)]',\n        destructive: 'bg-[var(--tei-danger)] text-[var(--tei-accent-fg)] hover:opacity-90',\n        link: 'text-[var(--tei-text)] underline-offset-4 hover:underline',\n      },\n      size: {\n        default: 'h-10 px-4 py-2',\n        sm: 'h-8 px-3 text-xs',\n        lg: 'h-11 px-6',\n        icon: 'h-10 w-10',\n      },\n    },\n    defaultVariants: { variant: 'default', size: 'default' },\n  },\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean;\n}\n\nexport const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  ({ className, variant, size, asChild = false, ...props }, ref) => {\n    const Comp = asChild ? Slot : 'button';\n    return (\n      <Comp className={cn(buttonVariants({ variant, size }), className)} ref={ref} {...props} />\n    );\n  },\n);\nButton.displayName = 'Button';\n\nexport { buttonVariants };\n",
+      "type": "registry:ui",
+      "target": "components/ui/button.tsx"
+    }
+  ]
+}

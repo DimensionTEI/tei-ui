@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sheet",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: sheet",
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/sheet.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport * as DialogPrimitive from '@radix-ui/react-dialog';\nimport { X } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\nexport const Sheet = DialogPrimitive.Root;\nexport const SheetTrigger = DialogPrimitive.Trigger;\nexport const SheetClose = DialogPrimitive.Close;\nexport const SheetPortal = DialogPrimitive.Portal;\n\nconst SheetOverlay = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Overlay>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Overlay\n    ref={ref}\n    className={cn(\n      'fixed inset-0 z-50 bg-[var(--tei-overlay)] backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',\n      className,\n    )}\n    {...props}\n  />\n));\nSheetOverlay.displayName = 'SheetOverlay';\n\ntype Side = 'left' | 'right';\n\nexport const SheetContent = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {\n    side?: Side;\n    hideCloseButton?: boolean;\n  }\n>(({ className, children, side = 'left', hideCloseButton, ...props }, ref) => (\n  <SheetPortal>\n    <SheetOverlay />\n    <DialogPrimitive.Content\n      ref={ref}\n      className={cn(\n        'fixed z-50 flex h-full w-72 flex-col border-[var(--tei-border)] bg-[var(--tei-surface)] shadow-[var(--tei-shadow-lg)] focus:outline-none',\n        side === 'left' &&\n          'left-0 top-0 border-r data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',\n        side === 'right' &&\n          'right-0 top-0 border-l data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      {!hideCloseButton && (\n        <DialogPrimitive.Close className=\"absolute right-3 top-3 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[var(--tei-accent)]\">\n          <X className=\"h-4 w-4\" />\n          <span className=\"sr-only\">Cerrar</span>\n        </DialogPrimitive.Close>\n      )}\n    </DialogPrimitive.Content>\n  </SheetPortal>\n));\nSheetContent.displayName = 'SheetContent';\n\nexport const SheetTitle = React.forwardRef<\n  React.ElementRef<typeof DialogPrimitive.Title>,\n  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>\n>(({ className, ...props }, ref) => (\n  <DialogPrimitive.Title\n    ref={ref}\n    className={cn('text-sm font-semibold text-[var(--tei-text-strong)]', className)}\n    {...props}\n  />\n));\nSheetTitle.displayName = 'SheetTitle';\n",
+      "type": "registry:ui",
+      "target": "components/ui/sheet.tsx"
+    }
+  ]
+}
