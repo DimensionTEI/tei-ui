@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: alert",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/alert.tsx",
+      "content": "import * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst alertVariants = cva(\n  'relative w-full rounded-md border px-4 py-3 text-sm [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-2px] [&>svg]:h-4 [&>svg]:w-4 [&>svg~*]:pl-7',\n  {\n    variants: {\n      variant: {\n        default:\n          'border-[var(--tei-border)] bg-[var(--tei-surface)] text-[var(--tei-text)] [&>svg]:text-[var(--tei-muted)]',\n        info: 'border-[var(--tei-info)]/40 bg-[var(--tei-info)]/5 text-[var(--tei-info)] [&>svg]:text-[var(--tei-info)]',\n        success:\n          'border-[var(--tei-success)]/40 bg-[var(--tei-success)]/5 text-[var(--tei-success)] [&>svg]:text-[var(--tei-success)]',\n        warning:\n          'border-[var(--tei-warning)]/40 bg-[var(--tei-warning)]/5 text-[var(--tei-warning)] [&>svg]:text-[var(--tei-warning)]',\n        destructive:\n          'border-[var(--tei-danger)]/40 bg-[var(--tei-danger)]/5 text-[var(--tei-danger)] [&>svg]:text-[var(--tei-danger)]',\n      },\n    },\n    defaultVariants: { variant: 'default' },\n  },\n);\n\nexport const Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div ref={ref} role=\"alert\" className={cn(alertVariants({ variant }), className)} {...props} />\n));\nAlert.displayName = 'Alert';\n\nexport const AlertTitle = React.forwardRef<\n  HTMLHeadingElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h5\n    ref={ref}\n    className={cn('mb-1 font-medium leading-none tracking-tight', className)}\n    {...props}\n  />\n));\nAlertTitle.displayName = 'AlertTitle';\n\nexport const AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props} />\n));\nAlertDescription.displayName = 'AlertDescription';\n",
+      "type": "registry:ui",
+      "target": "components/ui/alert.tsx"
+    }
+  ]
+}

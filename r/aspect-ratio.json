@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: aspect-ratio",
+  "dependencies": [
+    "@radix-ui/react-aspect-ratio"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "content": "'use client';\nimport * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';\n\nexport const AspectRatio = AspectRatioPrimitive.Root;\n",
+      "type": "registry:ui",
+      "target": "components/ui/aspect-ratio.tsx"
+    }
+  ]
+}

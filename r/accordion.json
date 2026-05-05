@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: accordion",
+  "dependencies": [
+    "@radix-ui/react-accordion",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/accordion.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport * as AccordionPrimitive from '@radix-ui/react-accordion';\nimport { ChevronDown } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\nexport const Accordion = AccordionPrimitive.Root;\n\nexport const AccordionItem = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>\n>(({ className, ...props }, ref) => (\n  <AccordionPrimitive.Item\n    ref={ref}\n    className={cn('border-b border-[var(--tei-border)]', className)}\n    {...props}\n  />\n));\nAccordionItem.displayName = 'AccordionItem';\n\nexport const AccordionTrigger = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Trigger>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>\n>(({ className, children, ...props }, ref) => (\n  <AccordionPrimitive.Header className=\"flex\">\n    <AccordionPrimitive.Trigger\n      ref={ref}\n      className={cn(\n        'flex flex-1 items-center justify-between gap-4 py-3 text-left text-sm font-medium text-[var(--tei-text)] transition-colors hover:text-[var(--tei-text-strong)] [&[data-state=open]>svg]:rotate-180',\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      <ChevronDown className=\"h-4 w-4 shrink-0 text-[var(--tei-muted)] transition-transform\" />\n    </AccordionPrimitive.Trigger>\n  </AccordionPrimitive.Header>\n));\nAccordionTrigger.displayName = 'AccordionTrigger';\n\nexport const AccordionContent = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>\n>(({ className, children, ...props }, ref) => (\n  <AccordionPrimitive.Content\n    ref={ref}\n    className=\"overflow-hidden text-sm text-[var(--tei-text)] data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\"\n    {...props}\n  >\n    <div className={cn('pb-3 pt-0', className)}>{children}</div>\n  </AccordionPrimitive.Content>\n));\nAccordionContent.displayName = 'AccordionContent';\n",
+      "type": "registry:ui",
+      "target": "components/ui/accordion.tsx"
+    }
+  ]
+}

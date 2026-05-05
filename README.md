@@ -11,10 +11,10 @@ Pre-requisitos: Next.js 15 + Tailwind CSS 4 + `shadcn` CLI 2.x.
 npx shadcn@latest init
 
 # 2. Instala los tokens (CSS vars + fuentes) — siempre primero
-npx shadcn@latest add https://<HOST>/r/tokens.json
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/tokens.json
 
 # 3. Instala las fuentes WOFF2 a public/fonts/
-npx tsx https://<HOST>/scripts/download-fonts.ts
+npx tsx https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/scripts/download-fonts.ts
 # o copia el script a tu repo y ejecútalo en local
 
 # 4. Importa los CSS en tu app/globals.css (orden importa)
@@ -23,34 +23,29 @@ npx tsx https://<HOST>/scripts/download-fonts.ts
 #    @import '../styles/tokens.css';
 
 # 5. Añade los componentes que necesites
-npx shadcn@latest add https://<HOST>/r/button.json
-npx shadcn@latest add https://<HOST>/r/dialog.json
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/button.json
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/dialog.json
 # etc.
 ```
 
-Reemplazar `<HOST>` por la URL pública donde se sirven los JSON (ver §Hosting).
+El `<HOST>` ya está fijado al mirror público — sustituye solo si lo migras a otro hosting.
 
 ## Componentes disponibles
 
+**Base (instalar primero):**
+
 | Item | Tipo | Descripción |
 |------|------|------|
-| `tokens` | style | CSS vars TEI (paleta clara/oscura) + Nunito + JetBrains Mono. **Instalar primero.** |
-| `utils` | lib | Helper `cn()` (clsx + tailwind-merge). Dep de todos los demás. |
-| `avatar` | ui | Avatar con fallback (Radix). |
-| `badge` | ui | Etiqueta inline de estado. |
-| `button` | ui | Botón con variantes default/secondary/ghost/outline/destructive/link. |
-| `card` | ui | Contenedor con header/content/footer. |
-| `code` | ui | `<InlineCode>` y `<CodeBlock>` con JetBrains Mono. |
-| `dialog` | ui | Modal Radix con overlay tematizado. |
-| `dropdown-menu` | ui | Menú contextual Radix. |
-| `input` | ui | Input de formulario. |
-| `label` | ui | Label asociable a input. |
-| `separator` | ui | Línea divisoria horizontal/vertical. |
-| `sheet` | ui | Drawer lateral (left/right). |
-| `table` | ui | Tabla con header/row/cell. |
-| `textarea` | ui | Textarea de formulario. |
+| `tokens` | style | CSS vars TEI (paleta clara/oscura) + Nunito + JetBrains Mono. |
+| `utils` | lib | Helper `cn()` (clsx + tailwind-merge). |
+
+**Primitivos (44 componentes ui):**
+
+`accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `badge` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `checkbox` · `code` · `collapsible` · `command` · `context-menu` · `dialog` · `drawer` · `dropdown-menu` · `form` · `hover-card` · `input` · `input-otp` · `label` · `menubar` · `navigation-menu` · `pagination` · `popover` · `progress` · `radio-group` · `scroll-area` · `select` · `separator` · `sheet` · `skeleton` · `slider` · `sonner` · `switch` · `table` · `tabs` · `textarea` · `toggle` · `toggle-group` · `tooltip`
 
 `shadcn` resuelve automáticamente las dependencias internas: añadir `button` también añade `utils` si falta.
+
+Lista completa con dependencias npm en [`r/registry.json`](./r/registry.json).
 
 ## Hosting del registry
 

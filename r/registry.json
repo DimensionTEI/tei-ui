@@ -18,6 +18,50 @@
       ]
     },
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: accordion",
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: alert-dialog",
+      "dependencies": [
+        "@radix-ui/react-alert-dialog"
+      ],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: alert",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: aspect-ratio",
+      "dependencies": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "registryDependencies": []
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "description": "Primitivo TEI: avatar",
@@ -40,6 +84,18 @@
       ]
     },
     {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: breadcrumb",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "description": "Primitivo TEI: button",
@@ -48,6 +104,19 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: calendar",
+      "dependencies": [
+        "lucide-react",
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "button",
         "utils"
       ]
     },
@@ -61,10 +130,69 @@
       ]
     },
     {
+      "name": "carousel",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: carousel",
+      "dependencies": [
+        "embla-carousel-react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: checkbox",
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "code",
       "type": "registry:ui",
       "description": "Primitivo TEI: code",
       "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: collapsible",
+      "dependencies": [
+        "@radix-ui/react-collapsible"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: command",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "cmdk",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: context-menu",
+      "dependencies": [
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "utils"
       ]
@@ -82,11 +210,58 @@
       ]
     },
     {
+      "name": "drawer",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: drawer",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "description": "Primitivo TEI: dropdown-menu",
       "dependencies": [
         "@radix-ui/react-dropdown-menu"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: form",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "react-hook-form"
+      ],
+      "registryDependencies": [
+        "label",
+        "utils"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: hover-card",
+      "dependencies": [
+        "@radix-ui/react-hover-card"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: input-otp",
+      "dependencies": [
+        "input-otp",
+        "lucide-react"
       ],
       "registryDependencies": [
         "utils"
@@ -107,6 +282,100 @@
       "description": "Primitivo TEI: label",
       "dependencies": [
         "@radix-ui/react-label"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: menubar",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: navigation-menu",
+      "dependencies": [
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: pagination",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: popover",
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: progress",
+      "dependencies": [
+        "@radix-ui/react-progress"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: radio-group",
+      "dependencies": [
+        "@radix-ui/react-radio-group",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: scroll-area",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: select",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "lucide-react"
       ],
       "registryDependencies": [
         "utils"
@@ -136,6 +405,46 @@
       ]
     },
     {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: skeleton",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: slider",
+      "dependencies": [
+        "@radix-ui/react-slider"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: sonner",
+      "dependencies": [
+        "sonner"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: switch",
+      "dependencies": [
+        "@radix-ui/react-switch"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "table",
       "type": "registry:ui",
       "description": "Primitivo TEI: table",
@@ -145,10 +454,57 @@
       ]
     },
     {
+      "name": "tabs",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: tabs",
+      "dependencies": [
+        "@radix-ui/react-tabs"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "description": "Primitivo TEI: textarea",
       "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: toggle-group",
+      "dependencies": [
+        "@radix-ui/react-toggle-group",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "toggle",
+        "utils"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: toggle",
+      "dependencies": [
+        "@radix-ui/react-toggle",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: tooltip",
+      "dependencies": [
+        "@radix-ui/react-tooltip"
+      ],
       "registryDependencies": [
         "utils"
       ]

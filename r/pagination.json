@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pagination",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: pagination",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/pagination.tsx",
+      "content": "import * as React from 'react';\nimport { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';\nimport { type ButtonProps, buttonVariants } from '@/components/ui/button';\nimport { cn } from '@/lib/utils';\n\nexport const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (\n  <nav\n    role=\"navigation\"\n    aria-label=\"paginación\"\n    className={cn('mx-auto flex w-full justify-center', className)}\n    {...props}\n  />\n);\nPagination.displayName = 'Pagination';\n\nexport const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProps<'ul'>>(\n  ({ className, ...props }, ref) => (\n    <ul ref={ref} className={cn('flex flex-row items-center gap-1', className)} {...props} />\n  ),\n);\nPaginationContent.displayName = 'PaginationContent';\n\nexport const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li'>>(\n  ({ className, ...props }, ref) => <li ref={ref} className={cn('', className)} {...props} />,\n);\nPaginationItem.displayName = 'PaginationItem';\n\ntype PaginationLinkProps = {\n  isActive?: boolean;\n} & Pick<ButtonProps, 'size'> &\n  React.ComponentProps<'a'>;\n\nexport const PaginationLink = ({\n  className,\n  isActive,\n  size = 'icon',\n  ...props\n}: PaginationLinkProps) => (\n  <a\n    aria-current={isActive ? 'page' : undefined}\n    className={cn(\n      buttonVariants({ variant: isActive ? 'outline' : 'ghost', size }),\n      className,\n    )}\n    {...props}\n  />\n);\nPaginationLink.displayName = 'PaginationLink';\n\nexport const PaginationPrevious = ({\n  className,\n  ...props\n}: React.ComponentProps<typeof PaginationLink>) => (\n  <PaginationLink aria-label=\"Página anterior\" size=\"default\" className={cn('gap-1 pl-2.5', className)} {...props}>\n    <ChevronLeft className=\"h-4 w-4\" />\n    <span>Anterior</span>\n  </PaginationLink>\n);\n\nexport const PaginationNext = ({\n  className,\n  ...props\n}: React.ComponentProps<typeof PaginationLink>) => (\n  <PaginationLink aria-label=\"Página siguiente\" size=\"default\" className={cn('gap-1 pr-2.5', className)} {...props}>\n    <span>Siguiente</span>\n    <ChevronRight className=\"h-4 w-4\" />\n  </PaginationLink>\n);\n\nexport const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<'span'>) => (\n  <span aria-hidden className={cn('flex h-9 w-9 items-center justify-center', className)} {...props}>\n    <MoreHorizontal className=\"h-4 w-4\" />\n    <span className=\"sr-only\">Más páginas</span>\n  </span>\n);\n",
+      "type": "registry:ui",
+      "target": "components/ui/pagination.tsx"
+    }
+  ]
+}

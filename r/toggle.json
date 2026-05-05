@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: toggle",
+  "dependencies": [
+    "@radix-ui/react-toggle",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/toggle.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport * as TogglePrimitive from '@radix-ui/react-toggle';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nexport const toggleVariants = cva(\n  'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-[var(--tei-bg-secondary)] hover:text-[var(--tei-text-strong)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tei-focus-ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--tei-bg)] disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-[var(--tei-bg-secondary)] data-[state=on]:text-[var(--tei-text-strong)]',\n  {\n    variants: {\n      variant: {\n        default: 'bg-transparent',\n        outline:\n          'border border-[var(--tei-border)] bg-transparent hover:bg-[var(--tei-bg-secondary)] hover:text-[var(--tei-text-strong)]',\n      },\n      size: {\n        default: 'h-9 px-3',\n        sm: 'h-8 px-2',\n        lg: 'h-10 px-3',\n      },\n    },\n    defaultVariants: { variant: 'default', size: 'default' },\n  },\n);\n\nexport const Toggle = React.forwardRef<\n  React.ElementRef<typeof TogglePrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> & VariantProps<typeof toggleVariants>\n>(({ className, variant, size, ...props }, ref) => (\n  <TogglePrimitive.Root\n    ref={ref}\n    className={cn(toggleVariants({ variant, size, className }))}\n    {...props}\n  />\n));\nToggle.displayName = 'Toggle';\n",
+      "type": "registry:ui",
+      "target": "components/ui/toggle.tsx"
+    }
+  ]
+}

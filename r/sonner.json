@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sonner",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: sonner",
+  "dependencies": [
+    "sonner"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/ui/sonner.tsx",
+      "content": "'use client';\nimport { Toaster as Sonner } from 'sonner';\n\ntype ToasterProps = React.ComponentProps<typeof Sonner>;\n\n/**\n * Wrapper de Sonner con tokens TEI. Montar una vez en el layout raíz.\n */\nexport function Toaster(props: ToasterProps) {\n  return (\n    <Sonner\n      theme=\"system\"\n      className=\"toaster group\"\n      toastOptions={{\n        classNames: {\n          toast:\n            'group toast border border-[var(--tei-border)] bg-[var(--tei-surface)] text-[var(--tei-text)] shadow-[var(--tei-shadow-md)]',\n          description: 'group-[.toast]:text-[var(--tei-muted)]',\n          actionButton:\n            'group-[.toast]:bg-[var(--tei-accent)] group-[.toast]:text-[var(--tei-accent-fg)]',\n          cancelButton:\n            'group-[.toast]:bg-[var(--tei-bg-secondary)] group-[.toast]:text-[var(--tei-muted)]',\n          success: 'group-[.toaster]:!text-[var(--tei-success)]',\n          error: 'group-[.toaster]:!text-[var(--tei-danger)]',\n          warning: 'group-[.toaster]:!text-[var(--tei-warning)]',\n          info: 'group-[.toaster]:!text-[var(--tei-info)]',\n        },\n      }}\n      {...props}\n    />\n  );\n}\n\nexport { toast } from 'sonner';\n",
+      "type": "registry:ui",
+      "target": "components/ui/sonner.tsx"
+    }
+  ]
+}

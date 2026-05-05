@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "calendar",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: calendar",
+  "dependencies": [
+    "lucide-react",
+    "react-day-picker"
+  ],
+  "registryDependencies": [
+    "button",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/calendar.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { ChevronLeft, ChevronRight } from 'lucide-react';\nimport { DayPicker } from 'react-day-picker';\nimport { cn } from '@/lib/utils';\nimport { buttonVariants } from '@/components/ui/button';\n\nexport type CalendarProps = React.ComponentProps<typeof DayPicker>;\n\nexport function Calendar({\n  className,\n  classNames,\n  showOutsideDays = true,\n  ...props\n}: CalendarProps) {\n  return (\n    <DayPicker\n      showOutsideDays={showOutsideDays}\n      className={cn('p-3', className)}\n      classNames={{\n        months: 'flex flex-col sm:flex-row gap-2',\n        month: 'flex flex-col gap-4',\n        caption: 'flex justify-center pt-1 relative items-center w-full',\n        caption_label: 'text-sm font-medium',\n        nav: 'flex items-center gap-1',\n        nav_button: cn(\n          buttonVariants({ variant: 'outline' }),\n          'size-7 bg-transparent p-0 opacity-50 hover:opacity-100',\n        ),\n        nav_button_previous: 'absolute left-1',\n        nav_button_next: 'absolute right-1',\n        table: 'w-full border-collapse space-x-1',\n        head_row: 'flex',\n        head_cell: 'text-[var(--tei-muted)] rounded-md w-8 font-normal text-[0.8rem]',\n        row: 'flex w-full mt-2',\n        cell: 'relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-[var(--tei-bg-secondary)] [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-[var(--tei-bg-secondary)]/50 [&:has([aria-selected])]:rounded-md',\n        day: cn(buttonVariants({ variant: 'ghost' }), 'size-8 p-0 font-normal aria-selected:opacity-100'),\n        day_range_start: 'day-range-start',\n        day_range_end: 'day-range-end',\n        day_selected:\n          'bg-[var(--tei-accent)] text-[var(--tei-accent-fg)] hover:bg-[var(--tei-accent)] hover:text-[var(--tei-accent-fg)] focus:bg-[var(--tei-accent)] focus:text-[var(--tei-accent-fg)]',\n        day_today: 'bg-[var(--tei-bg-secondary)] text-[var(--tei-text-strong)]',\n        day_outside:\n          'day-outside text-[var(--tei-muted)] aria-selected:bg-[var(--tei-bg-secondary)]/50 aria-selected:text-[var(--tei-muted)]',\n        day_disabled: 'text-[var(--tei-muted)] opacity-50',\n        day_range_middle: 'aria-selected:bg-[var(--tei-bg-secondary)] aria-selected:text-[var(--tei-text)]',\n        day_hidden: 'invisible',\n        ...classNames,\n      }}\n      components={{\n        IconLeft: ({ className: cls, ...iconProps }) => (\n          <ChevronLeft className={cn('size-4', cls)} {...iconProps} />\n        ),\n        IconRight: ({ className: cls, ...iconProps }) => (\n          <ChevronRight className={cn('size-4', cls)} {...iconProps} />\n        ),\n      }}\n      {...props}\n    />\n  );\n}\nCalendar.displayName = 'Calendar';\n",
+      "type": "registry:ui",
+      "target": "components/ui/calendar.tsx"
+    }
+  ]
+}

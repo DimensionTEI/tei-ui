@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: form",
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "label",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/form.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { Slot } from '@radix-ui/react-slot';\nimport {\n  Controller,\n  type ControllerProps,\n  type FieldPath,\n  type FieldValues,\n  FormProvider,\n  useFormContext,\n} from 'react-hook-form';\nimport { cn } from '@/lib/utils';\nimport { Label } from '@/components/ui/label';\n\nexport const Form = FormProvider;\n\ntype FormFieldContextValue<\n  TFieldValues extends FieldValues = FieldValues,\n  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,\n> = { name: TName };\n\nconst FormFieldContext = React.createContext<FormFieldContextValue | undefined>(undefined);\n\nexport const FormField = <\n  TFieldValues extends FieldValues = FieldValues,\n  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,\n>({\n  ...props\n}: ControllerProps<TFieldValues, TName>) => (\n  <FormFieldContext.Provider value={{ name: props.name }}>\n    <Controller {...props} />\n  </FormFieldContext.Provider>\n);\n\nconst useFormField = () => {\n  const fieldContext = React.useContext(FormFieldContext);\n  const itemContext = React.useContext(FormItemContext);\n  const { getFieldState, formState } = useFormContext();\n  if (!fieldContext) throw new Error('useFormField debe usarse dentro de <FormField>');\n  const fieldState = getFieldState(fieldContext.name, formState);\n  const { id } = itemContext ?? { id: '' };\n  return {\n    id,\n    name: fieldContext.name,\n    formItemId: `${id}-form-item`,\n    formDescriptionId: `${id}-form-item-description`,\n    formMessageId: `${id}-form-item-message`,\n    ...fieldState,\n  };\n};\n\ntype FormItemContextValue = { id: string };\nconst FormItemContext = React.createContext<FormItemContextValue | undefined>(undefined);\n\nexport const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => {\n    const id = React.useId();\n    return (\n      <FormItemContext.Provider value={{ id }}>\n        <div ref={ref} className={cn('space-y-2', className)} {...props} />\n      </FormItemContext.Provider>\n    );\n  },\n);\nFormItem.displayName = 'FormItem';\n\nexport const FormLabel = React.forwardRef<\n  React.ElementRef<typeof Label>,\n  React.ComponentPropsWithoutRef<typeof Label>\n>(({ className, ...props }, ref) => {\n  const { error, formItemId } = useFormField();\n  return (\n    <Label\n      ref={ref}\n      className={cn(error && 'text-[var(--tei-danger)]', className)}\n      htmlFor={formItemId}\n      {...props}\n    />\n  );\n});\nFormLabel.displayName = 'FormLabel';\n\nexport const FormControl = React.forwardRef<\n  React.ElementRef<typeof Slot>,\n  React.ComponentPropsWithoutRef<typeof Slot>\n>(({ ...props }, ref) => {\n  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();\n  return (\n    <Slot\n      ref={ref}\n      id={formItemId}\n      aria-describedby={!error ? formDescriptionId : `${formDescriptionId} ${formMessageId}`}\n      aria-invalid={!!error}\n      {...props}\n    />\n  );\n});\nFormControl.displayName = 'FormControl';\n\nexport const FormDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => {\n  const { formDescriptionId } = useFormField();\n  return (\n    <p\n      ref={ref}\n      id={formDescriptionId}\n      className={cn('text-sm text-[var(--tei-muted)]', className)}\n      {...props}\n    />\n  );\n});\nFormDescription.displayName = 'FormDescription';\n\nexport const FormMessage = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, children, ...props }, ref) => {\n  const { error, formMessageId } = useFormField();\n  const body = error ? String(error.message) : children;\n  if (!body) return null;\n  return (\n    <p\n      ref={ref}\n      id={formMessageId}\n      className={cn('text-sm font-medium text-[var(--tei-danger)]', className)}\n      {...props}\n    >\n      {body}\n    </p>\n  );\n});\nFormMessage.displayName = 'FormMessage';\n",
+      "type": "registry:ui",
+      "target": "components/ui/form.tsx"
+    }
+  ]
+}
