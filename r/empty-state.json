@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty-state",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: empty-state",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/empty-state.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\n/**\n * Pantalla vacía estandarizada — icono opcional, título, descripción y\n * acciones. Para listas vacías, paneles sin datos, búsquedas sin\n * resultados, etc.\n */\nexport const EmptyState = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & {\n    icon?: React.ReactNode;\n    title: React.ReactNode;\n    description?: React.ReactNode;\n    actions?: React.ReactNode;\n  }\n>(({ icon, title, description, actions, className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      'flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-[var(--tei-border)] bg-[var(--tei-bg-secondary)]/40 p-12 text-center',\n      className,\n    )}\n    {...props}\n  >\n    {icon && (\n      <div className=\"text-[var(--tei-muted)] [&>svg]:h-10 [&>svg]:w-10\">{icon}</div>\n    )}\n    <div className=\"space-y-1\">\n      <h3 className=\"text-base font-semibold text-[var(--tei-text-strong)]\">{title}</h3>\n      {description && (\n        <p className=\"max-w-sm text-sm text-[var(--tei-muted)]\">{description}</p>\n      )}\n    </div>\n    {actions && <div className=\"mt-2 flex items-center gap-2\">{actions}</div>}\n  </div>\n));\nEmptyState.displayName = 'EmptyState';\n",
+      "type": "registry:ui",
+      "target": "components/ui/empty-state.tsx"
+    }
+  ]
+}

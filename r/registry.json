@@ -143,6 +143,17 @@
       ]
     },
     {
+      "name": "chart",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: chart",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "checkbox",
       "type": "registry:ui",
       "description": "Primitivo TEI: checkbox",
@@ -232,6 +243,15 @@
       ]
     },
     {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: empty-state",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "form",
       "type": "registry:ui",
       "description": "Primitivo TEI: form",
@@ -271,6 +291,15 @@
       "name": "input",
       "type": "registry:ui",
       "description": "Primitivo TEI: input",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: kbd",
       "dependencies": [],
       "registryDependencies": [
         "utils"
@@ -434,6 +463,28 @@
       "registryDependencies": []
     },
     {
+      "name": "spinner",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: spinner",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "status-dot",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: status-dot",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "description": "Primitivo TEI: switch",
@@ -505,6 +556,15 @@
       "dependencies": [
         "@radix-ui/react-tooltip"
       ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: typography",
+      "dependencies": [],
       "registryDependencies": [
         "utils"
       ]

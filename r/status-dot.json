@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-dot",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: status-dot",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/status-dot.tsx",
+      "content": "import * as React from 'react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst statusDotVariants = cva('inline-block rounded-full', {\n  variants: {\n    variant: {\n      default: 'bg-[var(--tei-muted)]',\n      success: 'bg-[var(--tei-success)]',\n      warning: 'bg-[var(--tei-warning)]',\n      danger: 'bg-[var(--tei-danger)]',\n      info: 'bg-[var(--tei-info)]',\n    },\n    size: {\n      sm: 'h-1.5 w-1.5',\n      md: 'h-2 w-2',\n      lg: 'h-2.5 w-2.5',\n    },\n    pulse: {\n      true: 'animate-pulse',\n      false: '',\n    },\n  },\n  defaultVariants: { variant: 'default', size: 'md', pulse: false },\n});\n\nexport const StatusDot = React.forwardRef<\n  HTMLSpanElement,\n  React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof statusDotVariants>\n>(({ className, variant, size, pulse, ...props }, ref) => (\n  <span\n    ref={ref}\n    className={cn(statusDotVariants({ variant, size, pulse }), className)}\n    {...props}\n  />\n));\nStatusDot.displayName = 'StatusDot';\n",
+      "type": "registry:ui",
+      "target": "components/ui/status-dot.tsx"
+    }
+  ]
+}

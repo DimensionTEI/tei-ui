@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kbd",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: kbd",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/kbd.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\n/**\n * Pista visual de teclado, ej. <Kbd>⌘</Kbd> + <Kbd>K</Kbd>.\n */\nexport const Kbd = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(\n  ({ className, ...props }, ref) => (\n    <kbd\n      ref={ref}\n      className={cn(\n        'inline-flex h-5 min-w-[20px] select-none items-center justify-center rounded border border-[var(--tei-border)] bg-[var(--tei-bg-secondary)] px-1.5 font-mono text-[10px] font-medium text-[var(--tei-muted)]',\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nKbd.displayName = 'Kbd';\n",
+      "type": "registry:ui",
+      "target": "components/ui/kbd.tsx"
+    }
+  ]
+}

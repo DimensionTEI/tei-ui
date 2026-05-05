@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: spinner",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/spinner.tsx",
+      "content": "import * as React from 'react';\nimport { Loader2 } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\n/**\n * Spinner básico — wrapper alrededor de Loader2 con tamaño y color\n * controlables vía className. Para estados de carga inline.\n */\nexport const Spinner = React.forwardRef<\n  SVGSVGElement,\n  React.SVGAttributes<SVGSVGElement> & { size?: number }\n>(({ className, size = 16, ...props }, ref) => (\n  <Loader2\n    ref={ref}\n    width={size}\n    height={size}\n    className={cn('animate-spin text-[var(--tei-muted)]', className)}\n    {...props}\n  />\n));\nSpinner.displayName = 'Spinner';\n",
+      "type": "registry:ui",
+      "target": "components/ui/spinner.tsx"
+    }
+  ]
+}

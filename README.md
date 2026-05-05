@@ -39,9 +39,9 @@ El `<HOST>` ya está fijado al mirror público — sustituye solo si lo migras a
 | `tokens` | style | CSS vars TEI (paleta clara/oscura) + Nunito + JetBrains Mono. |
 | `utils` | lib | Helper `cn()` (clsx + tailwind-merge). |
 
-**Primitivos (44 componentes ui):**
+**Primitivos (50 componentes ui):**
 
-`accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `badge` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `checkbox` · `code` · `collapsible` · `command` · `context-menu` · `dialog` · `drawer` · `dropdown-menu` · `form` · `hover-card` · `input` · `input-otp` · `label` · `menubar` · `navigation-menu` · `pagination` · `popover` · `progress` · `radio-group` · `scroll-area` · `select` · `separator` · `sheet` · `skeleton` · `slider` · `sonner` · `switch` · `table` · `tabs` · `textarea` · `toggle` · `toggle-group` · `tooltip`
+`accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `badge` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `chart` · `checkbox` · `code` · `collapsible` · `command` · `context-menu` · `dialog` · `drawer` · `dropdown-menu` · `empty-state` · `form` · `hover-card` · `input` · `input-otp` · `kbd` · `label` · `menubar` · `navigation-menu` · `pagination` · `popover` · `progress` · `radio-group` · `scroll-area` · `select` · `separator` · `sheet` · `skeleton` · `slider` · `sonner` · `spinner` · `status-dot` · `switch` · `table` · `tabs` · `textarea` · `toggle` · `toggle-group` · `tooltip` · `typography`
 
 `shadcn` resuelve automáticamente las dependencias internas: añadir `button` también añade `utils` si falta.
 
