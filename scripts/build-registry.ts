@@ -21,6 +21,7 @@ import { join, basename } from 'node:path';
 
 const ROOT = join(__dirname, '..');
 const SRC_UI = join(ROOT, 'src/components/ui');
+const SRC_BLOCKS = join(ROOT, 'src/components/blocks');
 const SRC_LIB = join(ROOT, 'src/lib');
 const SRC_STYLES = join(ROOT, 'src/styles');
 const OUT = join(ROOT, 'r');
@@ -69,7 +70,7 @@ type RegistryFile = {
 type RegistryItem = {
   $schema: string;
   name: string;
-  type: 'registry:ui' | 'registry:lib' | 'registry:style';
+  type: 'registry:ui' | 'registry:lib' | 'registry:style' | 'registry:block';
   description?: string;
   dependencies?: string[];
   registryDependencies?: string[];
@@ -94,6 +95,31 @@ async function buildUiItem(filename: string): Promise<RegistryItem> {
         content,
         type: 'registry:ui',
         target: `components/ui/${filename}`,
+      },
+    ],
+  };
+}
+
+async function buildBlockItem(filename: string): Promise<RegistryItem> {
+  const name = basename(filename, '.tsx');
+  const content = await readFile(join(SRC_BLOCKS, filename), 'utf-8');
+  // Heurística: las descripciones largas viven en el JSDoc inicial.
+  // Tomamos la primera línea no vacía del comentario para resumir.
+  const docMatch = content.match(/\/\*\*\s*\n\s*\*\s*([^\n]+)/);
+  const description = docMatch?.[1]?.trim() ?? `Patrón TEI: ${name}`;
+  return {
+    $schema: SCHEMA,
+    name,
+    type: 'registry:block',
+    description,
+    dependencies: detectNpmDeps(content),
+    registryDependencies: detectRegistryDeps(content),
+    files: [
+      {
+        path: `components/blocks/${filename}`,
+        content,
+        type: 'registry:ui',
+        target: `components/blocks/${filename}`,
       },
     ],
   };
@@ -154,6 +180,17 @@ async function main() {
   const uiFiles = (await readdir(SRC_UI)).filter((f) => f.endsWith('.tsx'));
   for (const f of uiFiles.sort()) {
     items.push(await buildUiItem(f));
+  }
+
+  // Patrones / blocks — bloques compuestos que usan los primitivos.
+  let blockFiles: string[] = [];
+  try {
+    blockFiles = (await readdir(SRC_BLOCKS)).filter((f) => f.endsWith('.tsx'));
+  } catch {
+    // Carpeta opcional; si no existe, sin patrones.
+  }
+  for (const f of blockFiles.sort()) {
+    items.push(await buildBlockItem(f));
   }
 
   for (const item of items) {

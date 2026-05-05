@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pattern-two-column",
+  "type": "registry:block",
+  "description": "Patrón two-column — dos columnas tipo \"settings\": navegación lateral",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/blocks/pattern-two-column.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\n\n/**\n * Patrón two-column — dos columnas tipo \"settings\": navegación lateral\n * + contenido principal. La columna lateral colapsa a fila horizontal\n * scrolleable en móvil.\n *\n * Pasa `sections` con id, label e icono. El consumidor controla\n * `activeId` y dispara `onSelect`.\n */\n\nexport type TwoColumnSection = {\n  id: string;\n  label: string;\n  icon?: React.ComponentType<{ className?: string }>;\n  hint?: React.ReactNode;\n};\n\nexport function PatternTwoColumn({\n  sections,\n  activeId,\n  onSelect,\n  title,\n  subtitle,\n  children,\n  sidebarTitle = 'Secciones',\n}: {\n  sections: TwoColumnSection[];\n  activeId: string;\n  onSelect: (id: string) => void;\n  title?: React.ReactNode;\n  subtitle?: React.ReactNode;\n  children: React.ReactNode;\n  sidebarTitle?: string;\n}) {\n  return (\n    <div className=\"mx-auto max-w-6xl px-4 py-8\">\n      {(title || subtitle) && (\n        <header className=\"mb-6\">\n          {title && (\n            <h1 className=\"font-[var(--tei-font-display)] text-3xl font-semibold tracking-tight text-[var(--tei-text-strong)]\">\n              {title}\n            </h1>\n          )}\n          {subtitle && (\n            <p className=\"mt-2 text-sm text-[var(--tei-muted)]\">{subtitle}</p>\n          )}\n        </header>\n      )}\n      <div className=\"grid gap-6 lg:grid-cols-[16rem_1fr]\">\n        <aside className=\"lg:sticky lg:top-6 lg:self-start\">\n          <p className=\"mb-2 px-3 text-xs font-semibold uppercase tracking-wider text-[var(--tei-muted)]\">\n            {sidebarTitle}\n          </p>\n          <nav\n            className=\"flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible\"\n            aria-label={sidebarTitle}\n          >\n            {sections.map((s) => {\n              const Icon = s.icon;\n              const active = s.id === activeId;\n              return (\n                <button\n                  key={s.id}\n                  type=\"button\"\n                  onClick={() => onSelect(s.id)}\n                  className={cn(\n                    'flex shrink-0 items-center gap-2.5 rounded-md px-3 py-2 text-left text-sm transition-colors lg:w-full',\n                    active\n                      ? 'bg-[var(--tei-bg-secondary)] font-medium text-[var(--tei-text-strong)]'\n                      : 'text-[var(--tei-muted)] hover:bg-[var(--tei-bg-secondary)] hover:text-[var(--tei-text)]',\n                  )}\n                >\n                  {Icon && <Icon className=\"h-4 w-4\" />}\n                  <span className=\"flex-1\">{s.label}</span>\n                  {s.hint && (\n                    <span className=\"text-xs text-[var(--tei-muted)]\">{s.hint}</span>\n                  )}\n                </button>\n              );\n            })}\n          </nav>\n        </aside>\n        <main className=\"min-w-0\">{children}</main>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/blocks/pattern-two-column.tsx"
+    }
+  ]
+}

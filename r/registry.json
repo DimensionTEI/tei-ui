@@ -610,6 +610,117 @@
       "registryDependencies": [
         "utils"
       ]
+    },
+    {
+      "name": "pattern-dashboard",
+      "type": "registry:block",
+      "description": "Patrón dashboard — composición típica con:",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "utils"
+      ]
+    },
+    {
+      "name": "pattern-empty-states",
+      "type": "registry:block",
+      "description": "Galería de patrones de estados vacíos. Cada función exporta un",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "empty-state"
+      ]
+    },
+    {
+      "name": "pattern-error",
+      "type": "registry:block",
+      "description": "Patrón de página de error: 404, 403, 500, mantenimiento, etc.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "pattern-login",
+      "type": "registry:block",
+      "description": "Patrón Login — tarjeta centrada sobre fondo de grid sutil.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "checkbox",
+        "input",
+        "label"
+      ]
+    },
+    {
+      "name": "pattern-long-form",
+      "type": "registry:block",
+      "description": "Patrón de formulario largo / multi-paso. Composición:",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "card",
+        "utils"
+      ]
+    },
+    {
+      "name": "pattern-master-detail",
+      "type": "registry:block",
+      "description": "Patrón master-detail — lista a la izquierda, detalle a la derecha.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "utils"
+      ]
+    },
+    {
+      "name": "pattern-settings",
+      "type": "registry:block",
+      "description": "Patrón settings — header con título + descripción, tabs de nivel",
+      "dependencies": [],
+      "registryDependencies": [
+        "separator",
+        "tabs",
+        "utils"
+      ]
+    },
+    {
+      "name": "pattern-table",
+      "type": "registry:block",
+      "description": "Patrón tabla avanzada — versión compuesta y opinada:",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "checkbox",
+        "input",
+        "table",
+        "utils"
+      ]
+    },
+    {
+      "name": "pattern-two-column",
+      "type": "registry:block",
+      "description": "Patrón two-column — dos columnas tipo \"settings\": navegación lateral",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
     }
   ]
 }

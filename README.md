@@ -39,9 +39,23 @@ El `<HOST>` ya está fijado al mirror público — sustituye solo si lo migras a
 | `tokens` | style | CSS vars TEI (paleta clara/oscura) + Nunito + JetBrains Mono. |
 | `utils` | lib | Helper `cn()` (clsx + tailwind-merge). |
 
-**Primitivos y bloques (54 componentes ui):**
+**Primitivos (54):**
 
 `accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `badge` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `chart` · `checkbox` · `code` · `collapsible` · `command` · `context-menu` · `data-table` · `dialog` · `drawer` · `dropdown-menu` · `empty-state` · `form` · `hover-card` · `input` · `input-otp` · `kbd` · `label` · `menubar` · `navigation-menu` · `pagination` · `popover` · `progress` · `radio-group` · `scroll-area` · `select` · `separator` · `sheet` · `sidebar` · `skeleton` · `slider` · `sonner` · `spinner` · `status-dot` · `switch` · `table` · `tabs` · `textarea` · `theme-provider` · `theme-toggle` · `toggle` · `toggle-group` · `tooltip` · `typography`
+
+**Patrones / bloques (9):** plantillas compuestas de página completa, listas para empezar a editar.
+
+| Item | Para qué |
+|------|----------|
+| `pattern-login` | Login centrado con logo, iconos leading, toggle de contraseña |
+| `pattern-error` | Páginas 404 / 403 / 500 / mantenimiento |
+| `pattern-empty-states` | Galería de estados vacíos (lista, búsqueda, carpeta, offline, error) |
+| `pattern-two-column` | Layout settings con sub-nav lateral |
+| `pattern-master-detail` | Lista + detalle (bandeja, tickets, conversaciones) |
+| `pattern-settings` | Página de preferencias con tabs + secciones + zona peligrosa |
+| `pattern-dashboard` | Dashboard con KPIs (`StatCard`) + filtros + tabla + footer |
+| `pattern-table` | Tabla densa con sort, filtros, selección múltiple, bulk actions y paginación |
+| `pattern-long-form` | Formulario multi-paso con stepper y autoguardado |
 
 `shadcn` resuelve automáticamente las dependencias internas: añadir `button` también añade `utils` si falta.
 

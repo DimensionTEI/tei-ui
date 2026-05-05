@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pattern-dashboard",
+  "type": "registry:block",
+  "description": "Patrón dashboard — composición típica con:",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "card",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/blocks/pattern-dashboard.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { TrendingDown, TrendingUp } from 'lucide-react';\nimport { cn } from '@/lib/utils';\nimport { Card } from '@/components/ui/card';\n\n/**\n * Patrón dashboard — composición típica con:\n *   1) header: título + acciones (Exportar, Nuevo)\n *   2) KPIs en grid (StatCard)\n *   3) franja de filtros activos como tags (consumidor)\n *   4) tabla / contenido principal\n *   5) footer con paginación / meta\n *\n * Se exportan las piezas y un wrapper PatternDashboard que las acepta\n * como children. Da libertad para componer y a la vez ofrece la\n * estructura por defecto.\n */\n\nexport function PatternDashboard({\n  header,\n  kpis,\n  filters,\n  children,\n  footer,\n}: {\n  header?: React.ReactNode;\n  kpis?: React.ReactNode;\n  filters?: React.ReactNode;\n  children: React.ReactNode;\n  footer?: React.ReactNode;\n}) {\n  return (\n    <Card className=\"overflow-hidden p-0\">\n      {header && (\n        <div className=\"flex flex-wrap items-center justify-between gap-4 border-b border-[var(--tei-border)] bg-[var(--tei-bg-secondary)] px-6 py-4\">\n          {header}\n        </div>\n      )}\n      {kpis && (\n        <div className=\"grid gap-4 border-b border-[var(--tei-border)] p-6 sm:grid-cols-2 lg:grid-cols-4\">\n          {kpis}\n        </div>\n      )}\n      {filters && (\n        <div className=\"flex flex-wrap items-center gap-3 border-b border-[var(--tei-border)] px-6 py-4\">\n          {filters}\n        </div>\n      )}\n      <div>{children}</div>\n      {footer && (\n        <div className=\"flex flex-wrap items-center justify-between gap-3 border-t border-[var(--tei-border)] bg-[var(--tei-bg-secondary)] px-6 py-3 text-xs text-[var(--tei-muted)]\">\n          {footer}\n        </div>\n      )}\n    </Card>\n  );\n}\n\n/**\n * KPI individual. Ej: <StatCard label=\"Activos\" value=\"42\" delta=\"+5\" tone=\"success\" hint=\"vs 37 anterior\" />\n */\nexport function StatCard({\n  label,\n  value,\n  delta,\n  tone = 'neutral',\n  hint,\n  className,\n}: {\n  label: React.ReactNode;\n  value: React.ReactNode;\n  delta?: React.ReactNode;\n  tone?: 'success' | 'danger' | 'warning' | 'neutral';\n  hint?: React.ReactNode;\n  className?: string;\n}) {\n  const toneCls =\n    tone === 'success'\n      ? 'text-[var(--tei-success)]'\n      : tone === 'danger'\n        ? 'text-[var(--tei-danger)]'\n        : tone === 'warning'\n          ? 'text-[var(--tei-warning)]'\n          : 'text-[var(--tei-muted)]';\n  const Trend = tone === 'danger' ? TrendingDown : TrendingUp;\n  return (\n    <div\n      className={cn(\n        'rounded-lg border border-[var(--tei-border)] bg-[var(--tei-surface)] p-4',\n        className,\n      )}\n    >\n      <p className=\"text-xs font-medium uppercase tracking-wider text-[var(--tei-muted)]\">\n        {label}\n      </p>\n      <p className=\"mt-1 font-[var(--tei-font-display)] text-2xl font-bold tabular-nums text-[var(--tei-text-strong)]\">\n        {value}\n      </p>\n      <div className=\"mt-2 flex items-center gap-2 text-xs\">\n        {delta && (\n          <span className={cn('inline-flex items-center gap-1 font-medium', toneCls)}>\n            {tone !== 'neutral' && <Trend className=\"h-3.5 w-3.5\" />}\n            {delta}\n          </span>\n        )}\n        {hint && <span className=\"text-[var(--tei-muted)]\">{hint}</span>}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/blocks/pattern-dashboard.tsx"
+    }
+  ]
+}
