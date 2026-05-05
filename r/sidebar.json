@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: sidebar",
+  "dependencies": [],
+  "registryDependencies": [
+    "separator",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/sidebar.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\nimport { Separator } from '@/components/ui/separator';\n\n/**\n * Sidebar genérico — el consumidor pasa `logo`, `sections` y `footer`.\n * El renderer del Link se inyecta para que sirva tanto en Next.js\n * (`next/link`) como en react-router o `<a>` plano.\n */\n\nexport type SidebarItem = {\n  href: string;\n  label: string;\n  icon?: React.ComponentType<{ className?: string }>;\n  active?: boolean;\n};\n\nexport type SidebarSection = {\n  title?: string;\n  items: SidebarItem[];\n};\n\nexport type SidebarProps = {\n  logo?: React.ReactNode;\n  sections: SidebarSection[];\n  footer?: React.ReactNode;\n  className?: string;\n  /** Cómo renderizar cada link. Por defecto un `<a>` plano. */\n  renderLink?: (item: SidebarItem, children: React.ReactNode) => React.ReactNode;\n};\n\nexport function Sidebar({\n  logo,\n  sections,\n  footer,\n  className,\n  renderLink = (item, children) => (\n    <a key={item.href} href={item.href}>\n      {children}\n    </a>\n  ),\n}: SidebarProps) {\n  return (\n    <aside\n      className={cn(\n        'hidden w-60 shrink-0 border-r border-[var(--tei-border)] bg-[var(--tei-bg-secondary)] md:flex md:flex-col',\n        className,\n      )}\n    >\n      <div className=\"flex h-full flex-col p-3\">\n        {logo && <div className=\"mb-6 flex items-center gap-2 px-2\">{logo}</div>}\n\n        <nav className=\"flex flex-1 flex-col gap-3\">\n          {sections.map((section, i) => (\n            <div key={i} className=\"flex flex-col gap-1\">\n              {section.title && (\n                <p className=\"mb-1 px-3 text-xs font-semibold uppercase tracking-wide text-[var(--tei-muted)]\">\n                  {section.title}\n                </p>\n              )}\n              {section.items.map((item) => {\n                const Icon = item.icon;\n                const inner = (\n                  <span\n                    className={cn(\n                      'flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors',\n                      item.active\n                        ? 'bg-[var(--tei-surface)] font-medium text-[var(--tei-text-strong)]'\n                        : 'text-[var(--tei-muted)] hover:bg-[var(--tei-surface)] hover:text-[var(--tei-text)]',\n                    )}\n                  >\n                    {Icon && <Icon className=\"h-4 w-4\" />}\n                    {item.label}\n                  </span>\n                );\n                return (\n                  <React.Fragment key={item.href}>{renderLink(item, inner)}</React.Fragment>\n                );\n              })}\n              {i < sections.length - 1 && <Separator className=\"my-2\" />}\n            </div>\n          ))}\n        </nav>\n\n        {footer && (\n          <>\n            <Separator className=\"my-3\" />\n            <div>{footer}</div>\n          </>\n        )}\n      </div>\n    </aside>\n  );\n}\nSidebar.displayName = 'Sidebar';\n",
+      "type": "registry:ui",
+      "target": "components/ui/sidebar.tsx"
+    }
+  ]
+}

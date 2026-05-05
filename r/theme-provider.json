@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-provider",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: theme-provider",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/ui/theme-provider.tsx",
+      "content": "'use client';\nimport * as React from 'react';\n\n/**\n * Provider de tema claro/oscuro/sistema con persistencia en localStorage.\n * Sin dependencia de next-themes. SSR-safe.\n *\n * Aplica `data-theme=\"light|dark\"` al <html>; los tokens TEI ya están\n * definidos en :root y :root[data-theme='dark'] (ver tokens.css).\n */\nexport type Theme = 'light' | 'dark' | 'system';\nconst STORAGE_KEY = 'tei-theme';\n\ntype Ctx = {\n  theme: Theme;\n  resolvedTheme: 'light' | 'dark';\n  setTheme: (t: Theme) => void;\n};\n\nconst ThemeContext = React.createContext<Ctx | null>(null);\n\nfunction getSystemTheme(): 'light' | 'dark' {\n  if (typeof window === 'undefined') return 'light';\n  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';\n}\n\nfunction applyTheme(theme: 'light' | 'dark') {\n  if (typeof document === 'undefined') return;\n  document.documentElement.dataset.theme = theme;\n}\n\nexport function ThemeProvider({\n  children,\n  defaultTheme = 'system',\n}: {\n  children: React.ReactNode;\n  defaultTheme?: Theme;\n}) {\n  const [theme, setThemeState] = React.useState<Theme>(defaultTheme);\n  const [resolvedTheme, setResolved] = React.useState<'light' | 'dark'>('light');\n\n  // Lee la preferencia guardada al montar.\n  React.useEffect(() => {\n    const stored = (localStorage.getItem(STORAGE_KEY) as Theme | null) ?? defaultTheme;\n    setThemeState(stored);\n  }, [defaultTheme]);\n\n  // Resuelve el tema efectivo y aplica al DOM. Si está en 'system',\n  // suscribe al cambio de prefers-color-scheme.\n  React.useEffect(() => {\n    const resolved = theme === 'system' ? getSystemTheme() : theme;\n    setResolved(resolved);\n    applyTheme(resolved);\n    if (theme !== 'system') return;\n    const mq = window.matchMedia('(prefers-color-scheme: dark)');\n    const onChange = () => {\n      const r = mq.matches ? 'dark' : 'light';\n      setResolved(r);\n      applyTheme(r);\n    };\n    mq.addEventListener('change', onChange);\n    return () => mq.removeEventListener('change', onChange);\n  }, [theme]);\n\n  const setTheme = React.useCallback((t: Theme) => {\n    localStorage.setItem(STORAGE_KEY, t);\n    setThemeState(t);\n  }, []);\n\n  return (\n    <ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}>\n      {children}\n    </ThemeContext.Provider>\n  );\n}\n\nexport function useTheme() {\n  const ctx = React.useContext(ThemeContext);\n  if (!ctx) throw new Error('useTheme debe usarse dentro de <ThemeProvider>');\n  return ctx;\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/theme-provider.tsx"
+    }
+  ]
+}

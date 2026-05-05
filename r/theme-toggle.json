@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: theme-toggle",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "theme-provider"
+  ],
+  "files": [
+    {
+      "path": "components/ui/theme-toggle.tsx",
+      "content": "'use client';\nimport { Moon, Sun } from 'lucide-react';\nimport { Button } from '@/components/ui/button';\nimport { useTheme } from '@/components/ui/theme-provider';\n\n/**\n * Botón ícono que conmuta claro ↔ oscuro. Requiere <ThemeProvider>\n * en el árbol superior.\n */\nexport function ThemeToggle() {\n  const { resolvedTheme, setTheme } = useTheme();\n  const isDark = resolvedTheme === 'dark';\n  return (\n    <Button\n      variant=\"ghost\"\n      size=\"icon\"\n      onClick={() => setTheme(isDark ? 'light' : 'dark')}\n      aria-label={isDark ? 'Activar tema claro' : 'Activar tema oscuro'}\n      title={isDark ? 'Tema claro' : 'Tema oscuro'}\n    >\n      {isDark ? <Sun className=\"h-4 w-4\" /> : <Moon className=\"h-4 w-4\" />}\n    </Button>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/theme-toggle.tsx"
+    }
+  ]
+}

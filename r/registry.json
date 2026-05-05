@@ -209,6 +209,19 @@
       ]
     },
     {
+      "name": "data-table",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: data-table",
+      "dependencies": [
+        "@tanstack/react-table",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "table"
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "description": "Primitivo TEI: dialog",
@@ -434,6 +447,16 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: sidebar",
+      "dependencies": [],
+      "registryDependencies": [
+        "separator",
+        "utils"
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "description": "Primitivo TEI: skeleton",
@@ -522,6 +545,25 @@
       "dependencies": [],
       "registryDependencies": [
         "utils"
+      ]
+    },
+    {
+      "name": "theme-provider",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: theme-provider",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: theme-toggle",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "theme-provider"
       ]
     },
     {
