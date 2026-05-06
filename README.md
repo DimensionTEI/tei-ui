@@ -59,7 +59,7 @@ El `<HOST>` ya está fijado al mirror público — sustituye solo si lo migras a
 
 `shadcn` resuelve automáticamente las dependencias internas: añadir `button` también añade `utils` si falta.
 
-Lista completa con dependencias npm en [`r/registry.json`](./r/registry.json). Snippets de uso por componente en [`USAGE.md`](./USAGE.md). Historial de releases en [`CHANGELOG.md`](./CHANGELOG.md).
+Lista completa con dependencias npm en [`r/registry.json`](./r/registry.json). Snippets de uso por componente en [`USAGE.md`](./USAGE.md). Showcase Next.js de los 14 primitivos en [`example/`](./example). Historial de releases en [`CHANGELOG.md`](./CHANGELOG.md).
 
 ## Hosting del registry
 
