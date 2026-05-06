@@ -39,9 +39,9 @@ El `<HOST>` ya está fijado al mirror público — sustituye solo si lo migras a
 | `tokens` | style | CSS vars TEI (paleta clara/oscura) + Nunito + JetBrains Mono. |
 | `utils` | lib | Helper `cn()` (clsx + tailwind-merge). |
 
-**Primitivos (54):**
+**Primitivos (68):**
 
-`accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `badge` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `chart` · `checkbox` · `code` · `collapsible` · `command` · `context-menu` · `data-table` · `dialog` · `drawer` · `dropdown-menu` · `empty-state` · `form` · `hover-card` · `input` · `input-otp` · `kbd` · `label` · `menubar` · `navigation-menu` · `pagination` · `popover` · `progress` · `radio-group` · `scroll-area` · `select` · `separator` · `sheet` · `sidebar` · `skeleton` · `slider` · `sonner` · `spinner` · `status-dot` · `switch` · `table` · `tabs` · `textarea` · `theme-provider` · `theme-toggle` · `toggle` · `toggle-group` · `tooltip` · `typography`
+`accordion` · `alert` · `alert-dialog` · `aspect-ratio` · `avatar` · `avatar-group` · `badge` · `banner` · `breadcrumb` · `button` · `calendar` · `card` · `carousel` · `chart` · `checkbox` · `code` · `code-tabs` · `collapsible` · `command` · `confirm-inline` · `context-menu` · `data-table` · `date-input` · `description-list` · `dialog` · `drawer` · `dropdown-menu` · `empty-state` · `file-dropzone` · `form` · `hover-card` · `input` · `input-otp` · `kbd` · `label` · `menubar` · `navigation-menu` · `notification-inbox` · `number-input` · `pagination` · `popover` · `progress` · `radio-group` · `rating` · `scroll-area` · `select` · `separator` · `sheet` · `sidebar` · `skeleton` · `slider` · `sonner` · `spinner` · `stat` · `status-dot` · `stepper` · `switch` · `table` · `tabs` · `tag` · `textarea` · `theme-provider` · `theme-toggle` · `timeline` · `toggle` · `toggle-group` · `tooltip` · `typography`
 
 **Patrones / bloques (9):** plantillas compuestas de página completa, listas para empezar a editar.
 

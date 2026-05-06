@@ -62,6 +62,18 @@
       "registryDependencies": []
     },
     {
+      "name": "avatar-group",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: avatar-group",
+      "dependencies": [
+        "@radix-ui/react-avatar"
+      ],
+      "registryDependencies": [
+        "avatar",
+        "utils"
+      ]
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "description": "Primitivo TEI: avatar",
@@ -78,6 +90,18 @@
       "description": "Primitivo TEI: badge",
       "dependencies": [
         "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "banner",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: banner",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
       ],
       "registryDependencies": [
         "utils"
@@ -166,6 +190,16 @@
       ]
     },
     {
+      "name": "code-tabs",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: code-tabs",
+      "dependencies": [],
+      "registryDependencies": [
+        "tabs",
+        "utils"
+      ]
+    },
+    {
       "name": "code",
       "type": "registry:ui",
       "description": "Primitivo TEI: code",
@@ -197,6 +231,16 @@
       ]
     },
     {
+      "name": "confirm-inline",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: confirm-inline",
+      "dependencies": [],
+      "registryDependencies": [
+        "button",
+        "utils"
+      ]
+    },
+    {
       "name": "context-menu",
       "type": "registry:ui",
       "description": "Primitivo TEI: context-menu",
@@ -219,6 +263,26 @@
       "registryDependencies": [
         "button",
         "table"
+      ]
+    },
+    {
+      "name": "date-input",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: date-input",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "description-list",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: description-list",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -260,6 +324,17 @@
       "type": "registry:ui",
       "description": "Primitivo TEI: empty-state",
       "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "file-dropzone",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: file-dropzone",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "utils"
       ]
@@ -355,6 +430,29 @@
       ]
     },
     {
+      "name": "notification-inbox",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: notification-inbox",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "sheet",
+        "utils"
+      ]
+    },
+    {
+      "name": "number-input",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: number-input",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "pagination",
       "type": "registry:ui",
       "description": "Primitivo TEI: pagination",
@@ -394,6 +492,17 @@
       "description": "Primitivo TEI: radio-group",
       "dependencies": [
         "@radix-ui/react-radio-group",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: rating",
+      "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
@@ -497,11 +606,31 @@
       ]
     },
     {
+      "name": "stat",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: stat",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "status-dot",
       "type": "registry:ui",
       "description": "Primitivo TEI: status-dot",
       "dependencies": [
         "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: stepper",
+      "dependencies": [
+        "lucide-react"
       ],
       "registryDependencies": [
         "utils"
@@ -539,6 +668,18 @@
       ]
     },
     {
+      "name": "tag",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: tag",
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "description": "Primitivo TEI: textarea",
@@ -564,6 +705,15 @@
       "registryDependencies": [
         "button",
         "theme-provider"
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: timeline",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {

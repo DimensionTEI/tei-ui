@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: timeline",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/timeline.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\ntype Accent = 'brand' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';\n\nconst accentClass: Record<Accent, string> = {\n  brand: 'bg-[var(--tei-brand)]/10 text-[var(--tei-brand)]',\n  success: 'bg-[var(--tei-success)]/10 text-[var(--tei-success)]',\n  warning: 'bg-[var(--tei-warning)]/10 text-[var(--tei-warning)]',\n  danger: 'bg-[var(--tei-danger)]/10 text-[var(--tei-danger)]',\n  info: 'bg-[var(--tei-info)]/10 text-[var(--tei-info)]',\n  neutral: 'bg-[var(--tei-bg-secondary)] text-[var(--tei-muted)]',\n};\n\nexport interface TimelineItem {\n  id: string;\n  actor?: React.ReactNode;\n  action: React.ReactNode;\n  at: React.ReactNode;\n  icon?: React.ReactNode;\n  accent?: Accent;\n  body?: React.ReactNode;\n}\n\nexport interface TimelineProps extends React.HTMLAttributes<HTMLOListElement> {\n  items: TimelineItem[];\n}\n\nexport const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(\n  ({ items, className, ...props }, ref) => (\n    <ol ref={ref} className={cn('space-y-0', className)} {...props}>\n      {items.map((it, i) => {\n        const isLast = i === items.length - 1;\n        return (\n          <li key={it.id} className=\"relative flex items-start gap-3 pb-5 last:pb-0\">\n            {!isLast && (\n              <span\n                aria-hidden=\"true\"\n                className=\"absolute bottom-0 left-4 top-9 w-px bg-[var(--tei-border)]\"\n              />\n            )}\n            <span\n              aria-hidden=\"true\"\n              className={cn(\n                'relative z-10 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full ring-2 ring-[var(--tei-bg)] [&>svg]:h-4 [&>svg]:w-4',\n                accentClass[it.accent ?? 'brand'],\n              )}\n            >\n              {it.icon}\n            </span>\n            <div className=\"min-w-0 flex-1 pt-1\">\n              <p className=\"text-sm leading-snug text-[var(--tei-text)]\">\n                {it.actor && (\n                  <strong className=\"font-bold text-[var(--tei-text-strong)]\">\n                    {it.actor}\n                  </strong>\n                )}{' '}\n                {it.action}{' '}\n                <span className=\"font-mono text-xs text-[var(--tei-muted)]\">\n                  · {it.at}\n                </span>\n              </p>\n              {it.body && (\n                <div className=\"mt-2 rounded-md border border-[var(--tei-border)] bg-[var(--tei-bg-secondary)] p-3 text-sm text-[var(--tei-text)]\">\n                  {it.body}\n                </div>\n              )}\n            </div>\n          </li>\n        );\n      })}\n    </ol>\n  ),\n);\nTimeline.displayName = 'Timeline';\n",
+      "type": "registry:ui",
+      "target": "components/ui/timeline.tsx"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "description-list",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: description-list",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/description-list.tsx",
+      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\nexport interface DescriptionItem {\n  term: React.ReactNode;\n  description?: React.ReactNode;\n}\n\nexport interface DescriptionListProps extends React.HTMLAttributes<HTMLDListElement> {\n  items: DescriptionItem[];\n  orientation?: 'horizontal' | 'vertical';\n}\n\nexport const DescriptionList = React.forwardRef<HTMLDListElement, DescriptionListProps>(\n  ({ items, orientation = 'horizontal', className, ...props }, ref) => {\n    if (orientation === 'horizontal') {\n      return (\n        <dl\n          ref={ref}\n          className={cn(\n            'grid grid-cols-[max-content_1fr] gap-x-6 gap-y-3 text-sm',\n            className,\n          )}\n          {...props}\n        >\n          {items.map((it, i) => (\n            <React.Fragment key={i}>\n              <dt className=\"font-semibold text-[var(--tei-muted)]\">{it.term}</dt>\n              <dd className=\"text-[var(--tei-text)]\">{it.description}</dd>\n            </React.Fragment>\n          ))}\n        </dl>\n      );\n    }\n    return (\n      <dl ref={ref} className={cn('space-y-3 text-sm', className)} {...props}>\n        {items.map((it, i) => (\n          <div key={i} className=\"space-y-0.5\">\n            <dt className=\"text-xs font-semibold uppercase tracking-wide text-[var(--tei-muted)]\">\n              {it.term}\n            </dt>\n            <dd className=\"text-[var(--tei-text)]\">{it.description}</dd>\n          </div>\n        ))}\n      </dl>\n    );\n  },\n);\nDescriptionList.displayName = 'DescriptionList';\n",
+      "type": "registry:ui",
+      "target": "components/ui/description-list.tsx"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "confirm-inline",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: confirm-inline",
+  "dependencies": [],
+  "registryDependencies": [
+    "button",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/confirm-inline.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { Button } from '@/components/ui/button';\nimport { cn } from '@/lib/utils';\n\nexport interface ConfirmInlineProps extends React.HTMLAttributes<HTMLSpanElement> {\n  prompt?: React.ReactNode;\n  confirmLabel?: React.ReactNode;\n  cancelLabel?: React.ReactNode;\n  variant?: 'default' | 'destructive';\n  onConfirm: () => void;\n  onCancel?: () => void;\n  children: React.ReactNode;\n}\n\nexport const ConfirmInline = React.forwardRef<HTMLSpanElement, ConfirmInlineProps>(\n  (\n    {\n      prompt = '¿Confirmar?',\n      confirmLabel = 'Sí',\n      cancelLabel = 'Cancelar',\n      variant = 'destructive',\n      onConfirm,\n      onCancel,\n      className,\n      children,\n      ...props\n    },\n    ref,\n  ) => {\n    const [open, setOpen] = React.useState(false);\n    const yesRef = React.useRef<HTMLButtonElement>(null);\n\n    React.useEffect(() => {\n      if (open) yesRef.current?.focus();\n    }, [open]);\n\n    React.useEffect(() => {\n      if (!open) return;\n      const onKey = (e: KeyboardEvent) => {\n        if (e.key === 'Escape') {\n          setOpen(false);\n          onCancel?.();\n        }\n      };\n      document.addEventListener('keydown', onKey);\n      return () => document.removeEventListener('keydown', onKey);\n    }, [open, onCancel]);\n\n    return (\n      <span\n        ref={ref}\n        className={cn('inline-flex items-center', className)}\n        {...props}\n      >\n        {!open && (\n          <span\n            onClick={(e) => {\n              e.preventDefault();\n              e.stopPropagation();\n              setOpen(true);\n            }}\n            className=\"inline-flex items-center\"\n          >\n            {children}\n          </span>\n        )}\n        {open && (\n          <span className=\"inline-flex items-center gap-2 rounded-md border border-[var(--tei-danger)]/30 bg-[var(--tei-danger)]/5 px-3 py-1.5\">\n            <span className=\"text-sm font-bold text-[var(--tei-danger)]\">{prompt}</span>\n            <Button\n              ref={yesRef}\n              size=\"sm\"\n              variant={variant}\n              onClick={() => {\n                setOpen(false);\n                onConfirm();\n              }}\n            >\n              {confirmLabel}\n            </Button>\n            <Button\n              size=\"sm\"\n              variant=\"ghost\"\n              onClick={() => {\n                setOpen(false);\n                onCancel?.();\n              }}\n            >\n              {cancelLabel}\n            </Button>\n          </span>\n        )}\n      </span>\n    );\n  },\n);\nConfirmInline.displayName = 'ConfirmInline';\n",
+      "type": "registry:ui",
+      "target": "components/ui/confirm-inline.tsx"
+    }
+  ]
+}

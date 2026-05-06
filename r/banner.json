@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "banner",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: banner",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/banner.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { Info, CheckCircle2, AlertTriangle, AlertCircle, X } from 'lucide-react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\n\nconst bannerVariants = cva(\n  'flex w-full items-center gap-3 rounded-md border px-4 py-3 text-sm font-medium',\n  {\n    variants: {\n      variant: {\n        info: 'border-[var(--tei-info)]/40 bg-[var(--tei-info)]/5 text-[var(--tei-info)]',\n        success:\n          'border-[var(--tei-success)]/40 bg-[var(--tei-success)]/5 text-[var(--tei-success)]',\n        warning:\n          'border-[var(--tei-warning)]/40 bg-[var(--tei-warning)]/5 text-[var(--tei-warning)]',\n        danger:\n          'border-[var(--tei-danger)]/40 bg-[var(--tei-danger)]/5 text-[var(--tei-danger)]',\n      },\n    },\n    defaultVariants: { variant: 'info' },\n  },\n);\n\nconst iconByVariant = {\n  info: Info,\n  success: CheckCircle2,\n  warning: AlertTriangle,\n  danger: AlertCircle,\n} as const;\n\nexport interface BannerProps\n  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'>,\n    VariantProps<typeof bannerVariants> {\n  closable?: boolean;\n  action?: React.ReactNode;\n  onClose?: () => void;\n  children: React.ReactNode;\n}\n\nexport const Banner = React.forwardRef<HTMLDivElement, BannerProps>(\n  ({ variant = 'info', closable, action, onClose, className, children, ...props }, ref) => {\n    const [open, setOpen] = React.useState(true);\n    if (!open) return null;\n    const Icon = iconByVariant[variant ?? 'info'];\n    return (\n      <div\n        ref={ref}\n        role={variant === 'danger' ? 'alert' : 'status'}\n        className={cn(bannerVariants({ variant }), className)}\n        {...props}\n      >\n        <Icon className=\"h-4 w-4 shrink-0\" aria-hidden=\"true\" />\n        <div className=\"min-w-0 flex-1 leading-snug\">{children}</div>\n        {action && <div className=\"shrink-0 font-bold\">{action}</div>}\n        {closable && (\n          <button\n            type=\"button\"\n            aria-label=\"Cerrar\"\n            onClick={() => {\n              onClose?.();\n              setOpen(false);\n            }}\n            className=\"inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-black/10 dark:hover:bg-white/10\"\n          >\n            <X className=\"h-4 w-4\" />\n          </button>\n        )}\n      </div>\n    );\n  },\n);\nBanner.displayName = 'Banner';\n\nexport { bannerVariants };\n",
+      "type": "registry:ui",
+      "target": "components/ui/banner.tsx"
+    }
+  ]
+}

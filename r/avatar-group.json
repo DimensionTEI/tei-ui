@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-group",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: avatar-group",
+  "dependencies": [
+    "@radix-ui/react-avatar"
+  ],
+  "registryDependencies": [
+    "avatar",
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/avatar-group.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport * as AvatarPrimitive from '@radix-ui/react-avatar';\nimport { Avatar, AvatarFallback } from '@/components/ui/avatar';\nimport { cn } from '@/lib/utils';\n\ninterface Person {\n  name: string;\n  src?: string;\n  alt?: string;\n}\n\nconst sizeClass = {\n  sm: 'h-6 w-6 text-[10px]',\n  md: 'h-8 w-8 text-xs',\n  lg: 'h-10 w-10 text-sm',\n} as const;\n\nfunction initials(name: string) {\n  return name\n    .split(' ')\n    .filter(Boolean)\n    .slice(0, 2)\n    .map((p) => p[0]!.toUpperCase())\n    .join('');\n}\n\nexport interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {\n  people: Person[];\n  max?: number;\n  size?: keyof typeof sizeClass;\n  label?: string;\n}\n\nexport const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(\n  ({ people, max = 4, size = 'md', label, className, ...props }, ref) => {\n    const visible = people.slice(0, max);\n    const overflow = Math.max(0, people.length - max);\n    return (\n      <div\n        ref={ref}\n        role=\"img\"\n        aria-label={label ?? people.map((p) => p.name).join(', ')}\n        className={cn('flex items-center -space-x-2', className)}\n        {...props}\n      >\n        {visible.map((p, i) => (\n          <Avatar\n            key={i}\n            className={cn(\n              sizeClass[size],\n              'ring-2 ring-[var(--tei-bg)]',\n            )}\n          >\n            {p.src && <AvatarPrimitive.Image src={p.src} alt={p.alt ?? p.name} className=\"aspect-square h-full w-full object-cover\" />}\n            <AvatarFallback>{initials(p.name)}</AvatarFallback>\n          </Avatar>\n        ))}\n        {overflow > 0 && (\n          <span\n            className={cn(\n              'inline-flex items-center justify-center rounded-full font-semibold ring-2 ring-[var(--tei-bg)] bg-[var(--tei-bg-secondary)] text-[var(--tei-text)] border border-[var(--tei-border)]',\n              sizeClass[size],\n            )}\n            aria-hidden=\"true\"\n          >\n            +{overflow}\n          </span>\n        )}\n      </div>\n    );\n  },\n);\nAvatarGroup.displayName = 'AvatarGroup';\n",
+      "type": "registry:ui",
+      "target": "components/ui/avatar-group.tsx"
+    }
+  ]
+}

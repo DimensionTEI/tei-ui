@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stepper",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: stepper",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/stepper.tsx",
+      "content": "import * as React from 'react';\nimport { Check } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\nexport interface Step {\n  id: string;\n  label: React.ReactNode;\n  description?: React.ReactNode;\n}\n\nexport interface StepperProps extends React.HTMLAttributes<HTMLOListElement> {\n  steps: Step[];\n  current: string;\n  orientation?: 'horizontal' | 'vertical';\n}\n\ntype State = 'done' | 'current' | 'pending';\n\nconst markerByState: Record<State, string> = {\n  done: 'bg-[var(--tei-success)] text-[var(--tei-accent-fg)] border-[var(--tei-success)]',\n  current:\n    'bg-[var(--tei-accent)] text-[var(--tei-accent-fg)] border-[var(--tei-accent)] ring-4 ring-[var(--tei-accent)]/20',\n  pending:\n    'bg-[var(--tei-bg-secondary)] text-[var(--tei-muted)] border-[var(--tei-border-strong)]',\n};\n\nexport const Stepper = React.forwardRef<HTMLOListElement, StepperProps>(\n  ({ steps, current, orientation = 'horizontal', className, ...props }, ref) => {\n    const currentIdx = steps.findIndex((s) => s.id === current);\n    const stateOf = (idx: number): State =>\n      idx < currentIdx ? 'done' : idx === currentIdx ? 'current' : 'pending';\n\n    return (\n      <ol\n        ref={ref}\n        className={cn(\n          orientation === 'horizontal'\n            ? 'flex items-start gap-2'\n            : 'flex flex-col gap-4',\n          className,\n        )}\n        {...props}\n      >\n        {steps.map((s, i) => {\n          const state = stateOf(i);\n          const isLast = i === steps.length - 1;\n          return (\n            <li\n              key={s.id}\n              className={cn(\n                'flex',\n                orientation === 'horizontal'\n                  ? 'flex-1 items-start gap-3'\n                  : 'items-start gap-3',\n              )}\n            >\n              <span\n                aria-current={state === 'current' ? 'step' : undefined}\n                className={cn(\n                  'inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold transition-colors',\n                  markerByState[state],\n                )}\n              >\n                {state === 'done' ? <Check className=\"h-4 w-4\" /> : i + 1}\n              </span>\n              <div className=\"min-w-0 flex-1\">\n                <p\n                  className={cn(\n                    'text-sm font-semibold',\n                    state === 'current'\n                      ? 'text-[var(--tei-text-strong)]'\n                      : state === 'done'\n                        ? 'text-[var(--tei-text)]'\n                        : 'text-[var(--tei-muted)]',\n                  )}\n                >\n                  {s.label}\n                </p>\n                {s.description && (\n                  <p className=\"text-xs text-[var(--tei-muted)]\">{s.description}</p>\n                )}\n              </div>\n              {!isLast && orientation === 'horizontal' && (\n                <span\n                  aria-hidden=\"true\"\n                  className={cn(\n                    'mt-4 h-px flex-1',\n                    state === 'done'\n                      ? 'bg-[var(--tei-success)]'\n                      : 'bg-[var(--tei-border)]',\n                  )}\n                />\n              )}\n            </li>\n          );\n        })}\n      </ol>\n    );\n  },\n);\nStepper.displayName = 'Stepper';\n",
+      "type": "registry:ui",
+      "target": "components/ui/stepper.tsx"
+    }
+  ]
+}

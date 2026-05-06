@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "date-input",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: date-input",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/date-input.tsx",
+      "content": "import * as React from 'react';\nimport { Calendar } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\nexport type DateInputType = 'date' | 'time' | 'datetime-local' | 'month';\n\nexport interface DateInputProps\n  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {\n  type?: DateInputType;\n  invalid?: boolean;\n}\n\nexport const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(\n  ({ type = 'date', invalid, className, ...props }, ref) => (\n    <div className=\"relative\">\n      <Calendar\n        aria-hidden=\"true\"\n        className=\"pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--tei-muted)]\"\n      />\n      <input\n        ref={ref}\n        type={type}\n        aria-invalid={invalid || undefined}\n        className={cn(\n          'flex h-10 w-full rounded-md border bg-[var(--tei-surface)] pl-9 pr-3 py-2 text-sm text-[var(--tei-text)]',\n          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--tei-bg)] disabled:cursor-not-allowed disabled:opacity-50',\n          invalid\n            ? 'border-[var(--tei-danger)] focus-visible:ring-[var(--tei-danger)]'\n            : 'border-[var(--tei-border)] focus-visible:ring-[var(--tei-focus-ring)]',\n          className,\n        )}\n        {...props}\n      />\n    </div>\n  ),\n);\nDateInput.displayName = 'DateInput';\n",
+      "type": "registry:ui",
+      "target": "components/ui/date-input.tsx"
+    }
+  ]
+}

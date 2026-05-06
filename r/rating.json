@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating",
+  "type": "registry:ui",
+  "description": "Primitivo TEI: rating",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rating.tsx",
+      "content": "'use client';\nimport * as React from 'react';\nimport { Star } from 'lucide-react';\nimport { cn } from '@/lib/utils';\n\nconst sizePx = { sm: 16, md: 20, lg: 24 } as const;\n\nexport interface RatingProps {\n  value: number;\n  max?: number;\n  interactive?: boolean;\n  name?: string;\n  size?: keyof typeof sizePx;\n  ariaLabel?: string;\n  onChange?: (value: number) => void;\n  className?: string;\n}\n\nexport const Rating = React.forwardRef<HTMLDivElement, RatingProps>(\n  (\n    { value, max = 5, interactive = false, name, size = 'md', ariaLabel = 'Valoración', onChange, className },\n    ref,\n  ) => {\n    const px = sizePx[size];\n\n    return (\n      <div\n        ref={ref}\n        role={interactive ? 'radiogroup' : 'img'}\n        aria-label={ariaLabel}\n        className={cn('inline-flex items-center gap-1', className)}\n      >\n        {Array.from({ length: max }, (_, i) => i + 1).map((n) => {\n          const filled = value >= n;\n          if (!interactive) {\n            return (\n              <Star\n                key={n}\n                width={px}\n                height={px}\n                className={cn(\n                  filled ? 'fill-[var(--tei-warning)] text-[var(--tei-warning)]' : 'text-[var(--tei-border-strong)]',\n                )}\n                aria-hidden=\"true\"\n              />\n            );\n          }\n          return (\n            <button\n              key={n}\n              type=\"button\"\n              role=\"radio\"\n              aria-checked={filled}\n              onClick={() => onChange?.(n)}\n              className={cn(\n                'inline-flex items-center justify-center rounded transition-colors',\n                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--tei-focus-ring)]',\n              )}\n            >\n              <Star\n                width={px}\n                height={px}\n                className={cn(\n                  filled ? 'fill-[var(--tei-warning)] text-[var(--tei-warning)]' : 'text-[var(--tei-border-strong)] hover:text-[var(--tei-warning)]/60',\n                )}\n                aria-hidden=\"true\"\n              />\n            </button>\n          );\n        })}\n        {interactive && name && <input type=\"hidden\" name={name} value={value} />}\n      </div>\n    );\n  },\n);\nRating.displayName = 'Rating';\n",
+      "type": "registry:ui",
+      "target": "components/ui/rating.tsx"
+    }
+  ]
+}
