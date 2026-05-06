@@ -61,6 +61,22 @@ El `<HOST>` ya está fijado al mirror público — sustituye solo si lo migras a
 
 Lista completa con dependencias npm en [`r/registry.json`](./r/registry.json). Snippets de uso por componente en [`USAGE.md`](./USAGE.md). Showcase Next.js de los 14 primitivos en [`example/`](./example). Historial de releases en [`CHANGELOG.md`](./CHANGELOG.md).
 
+## Adoptar tei-ui en un proyecto existente
+
+Si tienes un proyecto avanzado y quieres migrarlo (o trabajas con un agente IA — Claude Code, Cursor — y necesitas que aplique este sistema):
+
+1. **Reglas operativas** (qué primitivo usar, tokens, anti-patrones): [`tei-design.md`](./tei-design.md).
+2. **Playbook de migración** (fases, orden seguro, convivencia con código legacy): [`migration.md`](./migration.md).
+
+Descarga ambos a la raíz del proyecto:
+
+```bash
+curl -O https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/tei-design.md
+curl -O https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/migration.md
+```
+
+Luego, en tu sesión de IA: *"lee `tei-design.md` y `migration.md`, audita el proyecto y propón plan de migración"*. Los archivos están escritos con instrucciones explícitas para agentes — no requieren modificar tu `CLAUDE.md` actual.
+
 ## Hosting del registry
 
 Los JSON en `r/` son ficheros estáticos. Tres opciones:
