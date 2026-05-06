@@ -63,11 +63,16 @@ Reemplazar todo de golpe rompe tests, regresiones visuales y la confianza del eq
    ```bash
    npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/utils.json
    ```
-5. **Verificar que el proyecto sigue funcionando exactamente igual que antes.**
+5. Descargar las fuentes WOFF2 a `public/fonts/`:
+   ```bash
+   curl -o tmp-fonts.ts https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/scripts/download-fonts.ts
+   npx tsx tmp-fonts.ts && rm tmp-fonts.ts
+   ```
+6. **Verificar que el proyecto sigue funcionando exactamente igual que antes.**
    - `npm run build` o equivalente del framework.
    - Pruebas manuales de las 3-5 pantallas más críticas.
    - Las fuentes Nunito + JetBrains Mono ya cargarán pero no aplicarán hasta que algún elemento use `var(--tei-font-sans)`.
-6. **Commit + merge.** No incluir nada más en este PR.
+7. **Commit + merge.** No incluir nada más en este PR.
 
 ## Fase 2 — Theme provider y modo claro/oscuro (1 PR)
 

@@ -71,6 +71,13 @@ Esto crea `src/styles/tokens.css` y `src/styles/fonts.css`. Importarlos al CSS g
 @import '../styles/tokens.css';
 ```
 
+**Descargar las fuentes WOFF2** a `public/fonts/` (sin esto, las fuentes Nunito + JetBrains Mono no cargarán y caerá al fallback Segoe UI / monospace):
+
+```bash
+curl -o tmp-fonts.ts https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/scripts/download-fonts.ts
+npx tsx tmp-fonts.ts && rm tmp-fonts.ts
+```
+
 Después, instalar los componentes según necesidad:
 
 ```bash

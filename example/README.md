@@ -45,8 +45,12 @@ npx shadcn@latest add \
 #      @import '../styles/fonts.css';
 #      @import '../styles/tokens.css';
 
-# 5. Copia example/page.tsx a src/app/page.tsx
-# 6. npm run dev → http://localhost:3000
+# 5. Descarga las fuentes WOFF2 a public/fonts/ (sin esto cae al fallback)
+curl -o tmp-fonts.ts https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/scripts/download-fonts.ts
+npx tsx tmp-fonts.ts && rm tmp-fonts.ts
+
+# 6. Copia example/page.tsx a src/app/page.tsx
+# 7. npm run dev → http://localhost:3000
 ```
 
 ## Smoke test verificado
