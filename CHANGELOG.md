@@ -2,6 +2,48 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.1.0] — 2026-05-08
+
+### Cambiado · paleta TEI canónica como default
+
+`tokens.css` realineado con el sistema de diseño canónico de Dimension TEI ([estilo.dimensiontei.com](https://estilo.dimensiontei.com)). El registry pasa de paleta neutra ChatGPT/Claude a la **paleta colorida TEI** (oxford navy + cyan + coral + yellow + ink).
+
+**Cambio visual sustancial.** Los 79 primitivos no cambian de código — siguen consumiendo `var(--tei-*)`. Lo que cambia son los **valores** que esas variables resuelven:
+
+- **Tema claro:** superficies blancas/ink-50, texto ink-900, accent y brand `cyan-400/500`, semánticos en cyan/coral/yellow.
+- **Tema oscuro:** superficies oxford-800/700 (azul navy profundo), texto blanco, accent y brand `cyan-400`, semánticos algo más claros para contraste.
+
+### Añadido · capa pública `--color-*`
+
+Toda la paleta TEI ahora se expone con namespace `--color-*` (compatible con Tailwind v4 `@theme inline`):
+
+- 11 escalas × 11 tonos = 121 tokens base (`cyan`, `blue`, `yellow`, `coral`, `oxford`, `ink` × `50…950`).
+- Aliases semánticos `--color-{success,warning,danger,info}-*`.
+
+Consumidores que quieran usar la paleta TEI directamente (fuera de los 79 primitivos) pueden hacer `bg-[var(--color-cyan-400)]` sin pasar por aliases `--tei-*`.
+
+### Migración para consumidores existentes
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/tokens.json --overwrite
+```
+
+Esto sobrescribe `src/styles/tokens.css` con la paleta canónica. Los componentes ya instalados (`@/components/ui/*`) **no requieren cambio** — siguen usando `var(--tei-*)`.
+
+Tras actualizar:
+
+1. Verifica visual en pantallas críticas (login, dashboard, tabla, settings).
+2. Si tu app montaba dark mode con valores ChatGPT-grises, ahora verás oxford navy. Si la marca de tu producto es esto, perfecto. Si no, define tus overrides en una capa propia (`tokens-overrides.css` cargado después).
+
+### Nota sobre versionado
+
+Estrictamente este es un cambio MAJOR (`v2.0.0`) por el cambio visual paradigmático. Lo etiquetamos como `v1.1.0` porque:
+
+- Cero consumidores externos conocidos hasta esta release.
+- La intención original del registry era la paleta TEI canónica — la `v1.0.0` neutra fue una decisión experimental que se reinvirtió en menos de una semana.
+
+Futuros cambios visuales paradigmáticos sí escalarán a MAJOR.
+
 ## [1.0.0] — 2026-05-06
 
 Primera release estable. Set completo de primitivos cubriendo el catálogo del design system Dimension TEI más nueve patrones de página listos para usar.

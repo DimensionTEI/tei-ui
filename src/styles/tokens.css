@@ -1,63 +1,156 @@
-/* Dimension AI Studio — design tokens
- * Paleta neutra estilo ChatGPT/Claude. El color de marca TEI se reserva
- * para el logo y algunos enlaces; el resto de la UI usa escala de grises.
+/* Dimension TEI — design tokens v1.1.0
+ * Paleta TEI canónica: oxford navy + cyan + coral + yellow + ink.
+ * Alineada con estilo.dimensiontei.com.
+ *
+ * Capa pública --color-* (compatible con Tailwind v4 @theme inline).
+ * Aliases --tei-* preservados para los 79 primitivos del registry —
+ * todos siguen funcionando sin cambios.
  */
 
 :root {
-  /* Superficies y fondos */
-  --tei-bg:             #FFFFFF;
-  --tei-bg-secondary:   #F7F7F8;   /* hovers, sidebars activos suaves */
-  --tei-surface:        #FFFFFF;
-  --tei-surface-raised: #FAFAFA;   /* cards, dialogs */
+  /* Tipografía */
+  --tei-font-sans:    'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --tei-font-display: var(--tei-font-sans);
+  --tei-font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Bordes */
-  --tei-border:         #E5E5E5;
-  --tei-border-strong:  #D4D4D4;
+  /* ─── Paleta base TEI ─────────────────────────────────────────── */
 
-  /* Texto */
-  --tei-text:           #1F1F1F;
-  --tei-text-strong:    #0F0F0F;
-  --tei-muted:          #6B7280;
+  --color-cyan-50:  #ecfaff;
+  --color-cyan-100: #d4f4ff;
+  --color-cyan-200: #aceaff;
+  --color-cyan-300: #71daff;
+  --color-cyan-400: #3dbdf2;
+  --color-cyan-500: #1aa3e0;
+  --color-cyan-600: #0086c2;
+  --color-cyan-700: #0a6c9c;
+  --color-cyan-800: #0f5980;
+  --color-cyan-900: #134a6a;
+  --color-cyan-950: #08293f;
 
-  /* Acento primario (botones principales, foco). Monocromo alto contraste. */
-  --tei-accent:         #1F1F1F;
-  --tei-accent-hover:   #000000;
-  --tei-accent-fg:      #FFFFFF;
+  --color-blue-50:  #eef5ff;
+  --color-blue-100: #d9e8ff;
+  --color-blue-200: #b8d4ff;
+  --color-blue-300: #8ab8ff;
+  --color-blue-400: #5896ed;
+  --color-blue-500: #1e96d4;
+  --color-blue-600: #0f7bb5;
+  --color-blue-700: #0e6294;
+  --color-blue-800: #114e76;
+  --color-blue-900: #133f5e;
+  --color-blue-950: #08243a;
 
-  /* Marca Dimension TEI — solo logo, enlaces, highlights muy puntuales */
-  --tei-brand:          #0064C0;
-  --tei-brand-soft:     #42C2FF;
+  --color-yellow-50:  #fff9e1;
+  --color-yellow-100: #fff1b8;
+  --color-yellow-200: #ffe27a;
+  --color-yellow-300: #ffd03a;
+  --color-yellow-400: #f5c333;
+  --color-yellow-500: #e6ad17;
+  --color-yellow-600: #c08a0f;
+  --color-yellow-700: #946810;
+  --color-yellow-800: #785214;
+  --color-yellow-900: #614217;
+  --color-yellow-950: #38240a;
 
-  /* Semántica (avisos de estado) */
-  --tei-success:        #16A34A;
-  --tei-warning:        #D97706;
-  --tei-danger:         #DC2626;
-  --tei-info:           #2563EB;
+  --color-coral-50:  #fff0ec;
+  --color-coral-100: #ffded5;
+  --color-coral-200: #ffbcaa;
+  --color-coral-300: #ff9377;
+  --color-coral-400: #f47155;
+  --color-coral-500: #e85a3d;
+  --color-coral-600: #c8421e;
+  --color-coral-700: #a23115;
+  --color-coral-800: #842a15;
+  --color-coral-900: #6c2415;
+  --color-coral-950: #3b0f08;
 
-  /* Foco accesible */
-  --tei-focus-ring:     #1F1F1F;
+  --color-oxford-50:  #eef1f8;
+  --color-oxford-100: #d9e0ee;
+  --color-oxford-200: #b0bcd8;
+  --color-oxford-300: #8294bd;
+  --color-oxford-400: #56709d;
+  --color-oxford-500: #34527c;
+  --color-oxford-600: #213d63;
+  --color-oxford-700: #16304f;
+  --color-oxford-800: #0f223a;
+  --color-oxford-900: #0b1733;
+  --color-oxford-950: #050b1d;
 
-  /* Tipografía — fuentes locales servidas desde /public/fonts (sin Google Fonts).
-   * Declaradas como @font-face en src/styles/fonts.css con unicode-range
-   * para subset latin/latin-ext. */
-  --tei-font-sans:      'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  --tei-font-display:   var(--tei-font-sans);
-  --tei-font-mono:      'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --color-ink-50:  #f8fafc;
+  --color-ink-100: #eef2f7;
+  --color-ink-200: #dde4ed;
+  --color-ink-300: #c2cdd9;
+  --color-ink-400: #94a1b3;
+  --color-ink-500: #677589;
+  --color-ink-600: #4a5468;
+  --color-ink-700: #353d4f;
+  --color-ink-800: #232a3a;
+  --color-ink-900: #131a28;
+  --color-ink-950: #080c14;
 
-  /* Overlay (modales, sheets) */
-  --tei-overlay:        rgb(0 0 0 / 0.5);
+  /* ─── Tonos semánticos (alias a la paleta) ────────────────────── */
 
-  /* Botones flotantes sobre imágenes — siempre oscuros en ambos temas
-   * para legibilidad sobre cualquier color de imagen. */
+  --color-success-50:  #ecfdf3;
+  --color-success-100: #d1fadf;
+  --color-success-300: #6ce9a6;
+  --color-success-500: #12b76a;
+  --color-success-600: #039855;
+  --color-success-700: #027a48;
+
+  --color-warning-50:  var(--color-yellow-50);
+  --color-warning-500: var(--color-yellow-500);
+  --color-warning-600: var(--color-yellow-600);
+  --color-warning-700: var(--color-yellow-700);
+
+  --color-danger-50:  var(--color-coral-50);
+  --color-danger-500: var(--color-coral-500);
+  --color-danger-600: var(--color-coral-600);
+  --color-danger-700: var(--color-coral-700);
+
+  --color-info-50:  var(--color-cyan-50);
+  --color-info-500: var(--color-cyan-500);
+  --color-info-600: var(--color-cyan-600);
+  --color-info-700: var(--color-cyan-700);
+
+  /* ─── Tema claro (default) ─ light surfaces + TEI accents ─────── */
+
+  --tei-bg:             #ffffff;
+  --tei-bg-secondary:   var(--color-ink-50);
+  --tei-surface:        #ffffff;
+  --tei-surface-raised: var(--color-ink-50);
+
+  --tei-border:        var(--color-ink-200);
+  --tei-border-strong: var(--color-ink-300);
+
+  --tei-text:        var(--color-ink-900);
+  --tei-text-strong: var(--color-ink-950);
+  --tei-muted:       var(--color-ink-500);
+
+  /* Accent y brand (CYAN canónico TEI) */
+  --tei-accent:       var(--color-cyan-500);
+  --tei-accent-hover: var(--color-cyan-600);
+  --tei-accent-fg:    #ffffff;
+  --tei-brand:        var(--color-cyan-400);
+  --tei-brand-soft:   var(--color-cyan-200);
+
+  /* Semánticos */
+  --tei-success: var(--color-success-500);
+  --tei-warning: var(--color-warning-500);
+  --tei-danger:  var(--color-danger-500);
+  --tei-info:    var(--color-info-500);
+
+  --tei-focus-ring: var(--color-cyan-500);
+
+  --tei-overlay: rgb(0 0 0 / 0.5);
+
+  /* Botones flotantes sobre imágenes — siempre oscuros en ambos temas */
   --tei-image-overlay:        rgb(0 0 0 / 0.65);
   --tei-image-overlay-strong: rgb(0 0 0 / 0.85);
-  --tei-image-overlay-fg:     #FFFFFF;
+  --tei-image-overlay-fg:     #ffffff;
 
-  /* Editor de recorte — máscara y handles, valores fijos para
-   * legibilidad sobre cualquier imagen subyacente. */
-  --tei-crop-mask:            rgb(0 0 0 / 0.45);
-  --tei-crop-handle-bg:       #FFFFFF;
-  --tei-crop-handle-border:   rgb(0 0 0 / 0.6);
+  /* Editor de recorte — máscara y handles fijos */
+  --tei-crop-mask:          rgb(0 0 0 / 0.45);
+  --tei-crop-handle-bg:     #ffffff;
+  --tei-crop-handle-border: rgb(0 0 0 / 0.6);
 
   /* Radios */
   --tei-radius-sm: 6px;
@@ -65,48 +158,50 @@
   --tei-radius-lg: 12px;
   --tei-radius-xl: 16px;
 
-  /* Sombras sutiles */
-  --tei-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.04);
-  --tei-shadow-md: 0 4px 16px rgb(0 0 0 / 0.06);
-  --tei-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.08);
+  /* Sombras (basadas en oxford navy para coherencia visual) */
+  --tei-shadow-sm: 0 1px 2px -1px rgb(11 23 51 / 0.05), 0 1px 3px 0 rgb(11 23 51 / 0.08);
+  --tei-shadow-md: 0 4px 6px -2px rgb(11 23 51 / 0.05), 0 8px 16px -4px rgb(11 23 51 / 0.08);
+  --tei-shadow-lg: 0 10px 15px -3px rgb(11 23 51 / 0.06), 0 20px 30px -10px rgb(11 23 51 / 0.10);
 
   /* Transiciones */
   --tei-transition-quick: 150ms ease;
 }
 
-/* Tema oscuro — basado en la paleta de ChatGPT */
-:root[data-theme="dark"] {
-  --tei-bg:             #212121;
-  --tei-bg-secondary:   #2F2F2F;
-  --tei-surface:        #2F2F2F;
-  --tei-surface-raised: #3A3A3A;
+/* ─── Tema oscuro · oxford navy híbrido (canónico TEI) ─────────── */
+:root[data-theme="dark"],
+:root.dark {
+  --tei-bg:             var(--color-oxford-800);
+  --tei-bg-secondary:   var(--color-oxford-700);
+  --tei-surface:        var(--color-oxford-700);
+  --tei-surface-raised: var(--color-oxford-600);
 
-  --tei-border:         #3D3D3D;
-  --tei-border-strong:  #525252;
+  --tei-border:        var(--color-oxford-600);
+  --tei-border-strong: var(--color-oxford-500);
 
-  --tei-text:           #ECECEC;
-  --tei-text-strong:    #FFFFFF;
-  --tei-muted:          #9B9B9B;
+  --tei-text:        #ffffff;
+  --tei-text-strong: #ffffff;
+  --tei-muted:       var(--color-ink-300);
 
-  --tei-accent:         #FFFFFF;
-  --tei-accent-hover:   #E5E5E5;
-  --tei-accent-fg:      #0F0F0F;
+  /* Cyan ligeramente más claro para contraste sobre oxford */
+  --tei-accent:       var(--color-cyan-400);
+  --tei-accent-hover: var(--color-cyan-300);
+  --tei-accent-fg:    var(--color-oxford-950);
+  --tei-brand:        var(--color-cyan-400);
+  --tei-brand-soft:   var(--color-cyan-300);
 
-  --tei-brand:          #42C2FF;
-  --tei-brand-soft:     #0064C0;
+  /* Semánticos algo más vivos en dark */
+  --tei-success: #22c55e;
+  --tei-warning: var(--color-yellow-300);
+  --tei-danger:  var(--color-coral-300);
+  --tei-info:    var(--color-cyan-300);
 
-  --tei-success:        #22C55E;
-  --tei-warning:        #F59E0B;
-  --tei-danger:         #F87171;
-  --tei-info:           #60A5FA;
-
-  --tei-focus-ring:     #FFFFFF;
+  --tei-focus-ring: var(--color-cyan-300);
 
   --tei-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.25);
   --tei-shadow-md: 0 4px 16px rgb(0 0 0 / 0.35);
   --tei-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.45);
 
-  --tei-overlay:   rgb(0 0 0 / 0.7);
+  --tei-overlay: rgb(0 0 0 / 0.7);
 }
 
 /* Reducir movimiento */
