@@ -2,6 +2,66 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.0] — 2026-05-08
+
+### Cambiado · Sidebar canónico TEI completo (matching estilo.dimensiontei.com)
+
+Tras feedback visual del primer integrador (la v1.3.x dejaba el sidebar parecido pero no idéntico al canónico TEI), se ajustan tres aspectos críticos:
+
+**1. `tone` por item — icono colorido individual**
+
+Cada `SidebarItem` puede llevar un `tone` (`cyan` | `blue` | `yellow` | `coral` | `ink`) que colorea el icono en reposo. Antes los iconos eran uniformes por sección; ahora cada item se pinta con su tono propio (`Empezar` cyan, `Marca` coral, `Tipografía` text-primary, etc.) — replicando el lenguaje visual de la guía TEI canónica.
+
+```ts
+items: [
+  { href: '/marca',      label: 'Marca',      icon: Sparkles, tone: 'coral' },
+  { href: '/tipografia', label: 'Tipografía', icon: Type,     tone: 'ink'   },
+  { href: '/color',      label: 'Color',      icon: Droplet,  tone: 'blue'  },
+  { href: '/voz',        label: 'Voz y tono', icon: MessageCircle, tone: 'coral' },
+]
+```
+
+El `active state` SIEMPRE pinta el icono cyan, independientemente del tone — el tone solo aplica en reposo.
+
+**2. Active styling distinto entre parent y child**
+
+- **Parent (level 0) activo:** bg `--color-cyan-50` (light) / `rgb(26_163_224/0.15)` (dark) + label en `cyan-700` / `cyan-300` + icono cyan. **Sin** stripe vertical (era confuso visualmente).
+- **Child (level 1) activo:** solo **barra vertical lateral** (`w-0.5`, `bg-cyan-500`, posicionada a la izquierda del label). Sin bg, sin icono (children no llevan icono). Más sutil, jerárquicamente correcto — el child es subordinado del parent, no compite visualmente.
+
+**3. Shortcut chip estilo `[G] · [E]`**
+
+Reemplaza el `<kbd>g d</kbd>` plano por dos `<kbd>` separados por un punto:
+
+```html
+<kbd>G</kbd> · <kbd>E</kbd>
+```
+
+Más legible, más canónico, más bonito.
+
+**4. `tone` por section**
+
+`SidebarSection.tone` permite asignar un color al kicker del título de la sección. Reemplaza el muted gris uniforme. Si no se especifica, sigue muted.
+
+```ts
+sections: [
+  { title: 'Workspace',      tone: 'cyan',   items: [...] },
+  { title: 'Administración', tone: 'coral',  items: [...] },
+  { title: 'Plataforma',     tone: 'yellow', items: [...] },
+]
+```
+
+### Migración para consumidores
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
+API aditiva — los proyectos que ya usan v1.3.x siguen funcionando sin cambios. Para activar los nuevos tones, añadir `tone` a items / sections en la factory de sections.
+
+### Bump MINOR (v1.3.1 → v1.4.0)
+
+Las propiedades `tone` son aditivas (opcionales) → no hay breaking change. Pero el cambio visual del active state (parent ya no lleva stripe vertical) es notable, así que MINOR para que los consumidores que actualicen lo vean en el changelog.
+
 ## [1.3.1] — 2026-05-08
 
 ### Fix · Sidebar shortcuts siempre visibles
