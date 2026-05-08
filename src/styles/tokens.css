@@ -1,10 +1,8 @@
-/* Dimension TEI — design tokens v1.1.0
- * Paleta TEI canónica: oxford navy + cyan + coral + yellow + ink.
- * Alineada con estilo.dimensiontei.com.
+/* Dimension TEI — design tokens v1.2.0
+ * Paleta TEI canónica completa + capa semántica (--color-* usada por
+ * todos los primitivos coloridos: alert, badge, banner, stat, kicker…).
  *
- * Capa pública --color-* (compatible con Tailwind v4 @theme inline).
- * Aliases --tei-* preservados para los 79 primitivos del registry —
- * todos siguen funcionando sin cambios.
+ * Aliases --tei-* preservados para los 79 primitivos del registry.
  */
 
 :root {
@@ -87,7 +85,7 @@
   --color-ink-900: #131a28;
   --color-ink-950: #080c14;
 
-  /* ─── Tonos semánticos (alias a la paleta) ────────────────────── */
+  /* ─── Tonos semánticos ────────────────────────────────────────── */
 
   --color-success-50:  #ecfdf3;
   --color-success-100: #d1fadf;
@@ -97,50 +95,78 @@
   --color-success-700: #027a48;
 
   --color-warning-50:  var(--color-yellow-50);
+  --color-warning-300: var(--color-yellow-300);
   --color-warning-500: var(--color-yellow-500);
   --color-warning-600: var(--color-yellow-600);
   --color-warning-700: var(--color-yellow-700);
 
   --color-danger-50:  var(--color-coral-50);
+  --color-danger-300: var(--color-coral-300);
   --color-danger-500: var(--color-coral-500);
   --color-danger-600: var(--color-coral-600);
   --color-danger-700: var(--color-coral-700);
 
   --color-info-50:  var(--color-cyan-50);
+  --color-info-300: var(--color-cyan-300);
   --color-info-500: var(--color-cyan-500);
   --color-info-600: var(--color-cyan-600);
   --color-info-700: var(--color-cyan-700);
 
-  /* ─── Tema claro (default) ─ light surfaces + TEI accents ─────── */
+  /* ─── Capa semántica light (default) ──────────────────────────── */
 
-  --tei-bg:             #ffffff;
-  --tei-bg-secondary:   var(--color-ink-50);
-  --tei-surface:        #ffffff;
-  --tei-surface-raised: var(--color-ink-50);
+  --color-bg:          #ffffff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-chrome:   #ffffff;
+  --color-bg-subtle:   var(--color-ink-50);
+  --color-bg-muted:    var(--color-ink-100);
+  --color-bg-tinted:   rgb(26 163 224 / 0.10);
+  --color-bg-overlay:  rgb(0 0 0 / 0.5);
 
-  --tei-border:        var(--color-ink-200);
-  --tei-border-strong: var(--color-ink-300);
+  --color-text-primary:   var(--color-ink-900);
+  --color-text-heading:   var(--color-ink-950);
+  --color-text-secondary: var(--color-ink-700);
+  --color-text-muted:     var(--color-ink-500);
+  --color-text-disabled:  var(--color-ink-400);
+  --color-text-inverse:   #ffffff;
 
-  --tei-text:        var(--color-ink-900);
-  --tei-text-strong: var(--color-ink-950);
-  --tei-muted:       var(--color-ink-500);
+  --color-border-subtle:  var(--color-ink-200);
+  --color-border-default: var(--color-ink-300);
+  --color-border-strong:  var(--color-ink-400);
 
-  /* Accent y brand (CYAN canónico TEI) */
-  --tei-accent:       var(--color-cyan-500);
-  --tei-accent-hover: var(--color-cyan-600);
-  --tei-accent-fg:    #ffffff;
+  --color-brand:        var(--color-cyan-500);
+  --color-brand-hover:  var(--color-cyan-600);
+  --color-brand-soft:   var(--color-cyan-200);
+  --color-brand-bg-soft: rgb(26 163 224 / 0.10);
+
+  --color-focus-ring: var(--color-cyan-500);
+
+  /* ─── Aliases --tei-* (compat con los 79 primitivos) ──────────── */
+
+  --tei-bg:             var(--color-bg);
+  --tei-bg-secondary:   var(--color-bg-subtle);
+  --tei-surface:        var(--color-bg-elevated);
+  --tei-surface-raised: var(--color-bg-elevated);
+
+  --tei-border:        var(--color-border-subtle);
+  --tei-border-strong: var(--color-border-default);
+
+  --tei-text:        var(--color-text-primary);
+  --tei-text-strong: var(--color-text-heading);
+  --tei-muted:       var(--color-text-muted);
+
+  --tei-accent:       var(--color-brand);
+  --tei-accent-hover: var(--color-brand-hover);
+  --tei-accent-fg:    var(--color-text-inverse);
   --tei-brand:        var(--color-cyan-400);
-  --tei-brand-soft:   var(--color-cyan-200);
+  --tei-brand-soft:   var(--color-brand-soft);
 
-  /* Semánticos */
   --tei-success: var(--color-success-500);
   --tei-warning: var(--color-warning-500);
   --tei-danger:  var(--color-danger-500);
   --tei-info:    var(--color-info-500);
 
-  --tei-focus-ring: var(--color-cyan-500);
-
-  --tei-overlay: rgb(0 0 0 / 0.5);
+  --tei-focus-ring: var(--color-focus-ring);
+  --tei-overlay:    var(--color-bg-overlay);
 
   /* Botones flotantes sobre imágenes — siempre oscuros en ambos temas */
   --tei-image-overlay:        rgb(0 0 0 / 0.65);
@@ -158,53 +184,104 @@
   --tei-radius-lg: 12px;
   --tei-radius-xl: 16px;
 
-  /* Sombras (basadas en oxford navy para coherencia visual) */
+  /* Sombras (basadas en oxford navy para coherencia) */
   --tei-shadow-sm: 0 1px 2px -1px rgb(11 23 51 / 0.05), 0 1px 3px 0 rgb(11 23 51 / 0.08);
   --tei-shadow-md: 0 4px 6px -2px rgb(11 23 51 / 0.05), 0 8px 16px -4px rgb(11 23 51 / 0.08);
   --tei-shadow-lg: 0 10px 15px -3px rgb(11 23 51 / 0.06), 0 20px 30px -10px rgb(11 23 51 / 0.10);
 
-  /* Transiciones */
   --tei-transition-quick: 150ms ease;
 }
 
 /* ─── Tema oscuro · oxford navy híbrido (canónico TEI) ─────────── */
 :root[data-theme="dark"],
 :root.dark {
-  --tei-bg:             var(--color-oxford-800);
-  --tei-bg-secondary:   var(--color-oxford-700);
-  --tei-surface:        var(--color-oxford-700);
-  --tei-surface-raised: var(--color-oxford-600);
+  --color-bg:          var(--color-oxford-800);
+  --color-bg-elevated: var(--color-oxford-700);
+  --color-bg-chrome:   var(--color-oxford-800);
+  --color-bg-subtle:   var(--color-oxford-700);
+  --color-bg-muted:    var(--color-oxford-600);
+  --color-bg-tinted:   rgb(26 163 224 / 0.15);
+  --color-bg-overlay:  rgb(0 0 0 / 0.7);
 
-  --tei-border:        var(--color-oxford-600);
-  --tei-border-strong: var(--color-oxford-500);
+  --color-text-primary:   #ffffff;
+  --color-text-heading:   #ffffff;
+  --color-text-secondary: var(--color-ink-100);
+  --color-text-muted:     var(--color-ink-300);
+  --color-text-disabled:  var(--color-ink-400);
+  --color-text-inverse:   var(--color-oxford-950);
 
-  --tei-text:        #ffffff;
-  --tei-text-strong: #ffffff;
-  --tei-muted:       var(--color-ink-300);
+  --color-border-subtle:  var(--color-oxford-600);
+  --color-border-default: var(--color-oxford-500);
+  --color-border-strong:  var(--color-oxford-400);
 
-  /* Cyan ligeramente más claro para contraste sobre oxford */
-  --tei-accent:       var(--color-cyan-400);
-  --tei-accent-hover: var(--color-cyan-300);
-  --tei-accent-fg:    var(--color-oxford-950);
-  --tei-brand:        var(--color-cyan-400);
-  --tei-brand-soft:   var(--color-cyan-300);
+  --color-brand:         var(--color-cyan-400);
+  --color-brand-hover:   var(--color-cyan-300);
+  --color-brand-soft:    var(--color-cyan-300);
+  --color-brand-bg-soft: rgb(26 163 224 / 0.20);
 
-  /* Semánticos algo más vivos en dark */
-  --tei-success: #22c55e;
-  --tei-warning: var(--color-yellow-300);
-  --tei-danger:  var(--color-coral-300);
-  --tei-info:    var(--color-cyan-300);
+  --color-focus-ring: var(--color-cyan-300);
 
-  --tei-focus-ring: var(--color-cyan-300);
+  /* tei-* aliases re-resuelven automáticamente vía var(--color-*) */
+  --tei-accent-fg: var(--color-text-inverse);
 
   --tei-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.25);
   --tei-shadow-md: 0 4px 16px rgb(0 0 0 / 0.35);
   --tei-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.45);
-
-  --tei-overlay: rgb(0 0 0 / 0.7);
 }
 
 /* Reducir movimiento */
 :root[data-reduced-motion="true"] {
   --tei-transition-quick: unset;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+ * Utilidades visuales TEI (no Tailwind utilities, pero usables
+ * con className desde cualquier componente del registry).
+ * ═══════════════════════════════════════════════════════════════ */
+
+/* Kicker — label tipográfico para etiquetas de sección */
+.tei-kicker-cyan,
+.tei-kicker-blue,
+.tei-kicker-yellow,
+.tei-kicker-coral,
+.tei-kicker-ink {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.tei-kicker-cyan   { color: var(--color-cyan-700);   }
+.tei-kicker-blue   { color: var(--color-blue-700);   }
+.tei-kicker-yellow { color: var(--color-yellow-700); }
+.tei-kicker-coral  { color: var(--color-coral-700);  }
+.tei-kicker-ink    { color: var(--color-ink-700);    }
+:root[data-theme="dark"] .tei-kicker-cyan,
+:root.dark .tei-kicker-cyan      { color: var(--color-cyan-400);   }
+:root[data-theme="dark"] .tei-kicker-blue,
+:root.dark .tei-kicker-blue      { color: var(--color-blue-300);   }
+:root[data-theme="dark"] .tei-kicker-yellow,
+:root.dark .tei-kicker-yellow    { color: var(--color-yellow-400); }
+:root[data-theme="dark"] .tei-kicker-coral,
+:root.dark .tei-kicker-coral     { color: var(--color-coral-400);  }
+:root[data-theme="dark"] .tei-kicker-ink,
+:root.dark .tei-kicker-ink       { color: var(--color-ink-300);    }
+
+/* Stripe — franja superior coloreada (Stat, Card destacada) */
+.tei-stripe-cyan   { box-shadow: inset 0 4px 0 0 var(--color-cyan-500);   }
+.tei-stripe-blue   { box-shadow: inset 0 4px 0 0 var(--color-blue-500);   }
+.tei-stripe-yellow { box-shadow: inset 0 4px 0 0 var(--color-yellow-400); }
+.tei-stripe-coral  { box-shadow: inset 0 4px 0 0 var(--color-coral-500);  }
+.tei-stripe-ink    { box-shadow: inset 0 4px 0 0 var(--color-ink-700);    }
+:root[data-theme="dark"] .tei-stripe-ink,
+:root.dark .tei-stripe-ink { box-shadow: inset 0 4px 0 0 var(--color-ink-300); }
+
+/* Gradient para palabras destacadas en titulares */
+.text-gradient-cyan {
+  background: linear-gradient(90deg, var(--color-cyan-500), var(--color-cyan-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }

@@ -65,9 +65,7 @@
       "name": "avatar-group",
       "type": "registry:ui",
       "description": "Primitivo TEI: avatar-group",
-      "dependencies": [
-        "@radix-ui/react-avatar"
-      ],
+      "dependencies": [],
       "registryDependencies": [
         "avatar",
         "utils"
@@ -78,7 +76,8 @@
       "type": "registry:ui",
       "description": "Primitivo TEI: avatar",
       "dependencies": [
-        "@radix-ui/react-avatar"
+        "@radix-ui/react-avatar",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "utils"
@@ -388,6 +387,15 @@
       "name": "kbd",
       "type": "registry:ui",
       "description": "Primitivo TEI: kbd",
+      "dependencies": [],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "kicker",
+      "type": "registry:ui",
+      "description": "Primitivo TEI: kicker",
       "dependencies": [],
       "registryDependencies": [
         "utils"

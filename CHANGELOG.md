@@ -2,6 +2,79 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.2.0] — 2026-05-08
+
+### Cambiado · componentes vibrantes (matching estilo.dimensiontei.com)
+
+La v1.1.0 actualizó solo los **tokens** a la paleta TEI canónica, pero los componentes seguían con styling neutro tipo shadcn estándar. Resultado visual: solo los botones y focus rings cambiaron, las cards/alerts/badges/stats seguían "grises tristes". Esta release **rehace el styling de los componentes coloridos** para igualar el lenguaje visual de `estilo.dimensiontei.com`.
+
+**Componentes con styling vibrante nuevo:**
+
+- `alert` — variantes `info`/`success`/`warning`/`destructive` con bg-50 + border-300 + text-700 (tinte completo en lugar de opacidad subtle).
+- `banner` — mismas variantes que alert, ancho completo, con SVG icon coloreado.
+- `badge` — añadidas variantes tonales `cyan`/`blue`/`yellow`/`coral` con bg-50 + text-700 + border-200 (light) y rgb-tint con text-300 (dark). Mantiene `default`/`success`/`warning`/`danger`/`outline`/`muted`/`neutral`.
+- `tag` — refactor de tonos para igualar al sistema de badges (canónico TEI).
+- `stat` — accent stripe colorido arriba (`tei-stripe-{cyan,blue,yellow,coral,ink}` aplicado vía `box-shadow inset`). Etiquetas en tracking 0.14em uppercase.
+- `avatar` — añadida prop `tone` en `AvatarFallback` con variantes `cyan`/`blue`/`yellow`/`coral`/`neutral`. Permite avatares coloridos al estilo guía TEI.
+- `avatar-group` — auto-cycle de tonos cyan→coral→yellow→blue por defecto, salvo que cada person traiga su propio `tone`.
+
+**Componente nuevo:**
+
+- `kicker` — etiqueta tipográfica de sección (11px bold uppercase, tracking 0.14em). Variantes `cyan`/`blue`/`yellow`/`coral`/`ink`. Usar como label antes de h1/h2 para estilo TEI canónico.
+
+### Añadido · capa semántica `--color-*` completa
+
+`tokens.css` ahora define las semantic tokens que los componentes coloridos consumen:
+
+- **Backgrounds:** `--color-bg`, `--color-bg-elevated`, `--color-bg-chrome`, `--color-bg-subtle`, `--color-bg-muted`, `--color-bg-tinted`, `--color-bg-overlay`.
+- **Texto:** `--color-text-primary`, `--color-text-heading`, `--color-text-secondary`, `--color-text-muted`, `--color-text-disabled`, `--color-text-inverse`.
+- **Bordes:** `--color-border-subtle`, `--color-border-default`, `--color-border-strong`.
+- **Brand:** `--color-brand`, `--color-brand-hover`, `--color-brand-soft`, `--color-brand-bg-soft`.
+
+Todos definidos en light + dark.
+
+### Añadido · utilidades visuales TEI
+
+CSS classes embebidas en `tokens.css` para uso directo desde cualquier componente vía `className`:
+
+- `.tei-kicker-{cyan,blue,yellow,coral,ink}` — usado por el primitivo `Kicker`.
+- `.tei-stripe-{cyan,blue,yellow,coral,ink}` — franja coloreada superior (Stat ya la usa internamente, también disponible para Cards destacadas).
+- `.text-gradient-cyan` — gradient cyan-500→cyan-300 para palabras destacadas en titulares (`<h1>Dashboard de <span class="text-gradient-cyan">control</span></h1>`).
+
+### Migración para consumidores existentes
+
+```bash
+# Sobrescribe los componentes con styling vibrante
+npx shadcn@latest add \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/tokens.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/alert.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/banner.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/badge.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/tag.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/stat.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/avatar.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/avatar-group.json \
+  https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/kicker.json \
+  --overwrite
+```
+
+Tras esto:
+- Los KPIs renderizan con franja superior cyan/coral/yellow.
+- Los alerts/banners llevan tinte completo de color, no opacidad subtle.
+- Los badges/tags pueden usar variantes/tonos cyan/blue/yellow/coral.
+- Los avatares en grupo se ven coloridos por defecto.
+- Los headings de página pueden llevar `<Kicker tone="cyan">` arriba.
+
+**No requieren cambio:** los 71 primitivos restantes siguen funcionando idénticos (button, card, dialog, sidebar, etc.).
+
+### Nota sobre versionado
+
+Los componentes ahora producen visuales sustancialmente distintos a v1.1.0 (cualquiera que use Alert/Badge/Banner/Stat verá cambio inmediato). Aun así marcamos MINOR (v1.2.0) y no MAJOR porque:
+
+- API pública preservada (mismas props, mismas variantes).
+- v1.1.0 fue una release de tránsito muy corta (mismo día).
+- Cambio dirigido a converger con la intención original de marca, no divergir.
+
 ## [1.1.0] — 2026-05-08
 
 ### Cambiado · paleta TEI canónica como default

@@ -1,13 +1,15 @@
 'use client';
 import * as React from 'react';
-import * as AvatarPrimitive from '@radix-ui/react-avatar';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
+
+type Tone = 'cyan' | 'blue' | 'yellow' | 'coral' | 'neutral';
 
 interface Person {
   name: string;
   src?: string;
   alt?: string;
+  tone?: Tone;
 }
 
 const sizeClass = {
@@ -15,6 +17,8 @@ const sizeClass = {
   md: 'h-8 w-8 text-xs',
   lg: 'h-10 w-10 text-sm',
 } as const;
+
+const CYCLE: Tone[] = ['cyan', 'coral', 'yellow', 'blue'];
 
 function initials(name: string) {
   return name
@@ -44,22 +48,22 @@ export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         className={cn('flex items-center -space-x-2', className)}
         {...props}
       >
-        {visible.map((p, i) => (
-          <Avatar
-            key={i}
-            className={cn(
-              sizeClass[size],
-              'ring-2 ring-[var(--tei-bg)]',
-            )}
-          >
-            {p.src && <AvatarPrimitive.Image src={p.src} alt={p.alt ?? p.name} className="aspect-square h-full w-full object-cover" />}
-            <AvatarFallback>{initials(p.name)}</AvatarFallback>
-          </Avatar>
-        ))}
+        {visible.map((p, i) => {
+          const tone = p.tone ?? CYCLE[i % CYCLE.length];
+          return (
+            <Avatar
+              key={i}
+              className={cn(sizeClass[size], 'ring-2 ring-[var(--color-bg)]')}
+            >
+              {p.src && <AvatarImage src={p.src} alt={p.alt ?? p.name} />}
+              <AvatarFallback tone={tone}>{initials(p.name)}</AvatarFallback>
+            </Avatar>
+          );
+        })}
         {overflow > 0 && (
           <span
             className={cn(
-              'inline-flex items-center justify-center rounded-full font-semibold ring-2 ring-[var(--tei-bg)] bg-[var(--tei-bg-secondary)] text-[var(--tei-text)] border border-[var(--tei-border)]',
+              'inline-flex items-center justify-center rounded-full font-semibold ring-2 ring-[var(--color-bg)] bg-[var(--color-bg-subtle)] text-[var(--color-text-secondary)] border border-[var(--color-border-subtle)]',
               sizeClass[size],
             )}
             aria-hidden="true"
