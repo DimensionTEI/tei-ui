@@ -2,6 +2,34 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.2] — 2026-05-08
+
+### Fix · polish visual final del Sidebar (matching canónico TEI 100%)
+
+Tras feedback del integrador (visualmente "casi pero no del todo"), tres ajustes finos:
+
+**1. Items con `font-medium` por defecto**
+
+Antes: items en reposo en `font-normal` (400). Ahora `font-medium` (500). Más legibles, más cercanos al canónico TEI donde los labels tienen presencia tipográfica.
+
+**2. Active label en `cyan-600` (más vibrante)**
+
+Antes: `cyan-700` (más oscuro, podía verse apagado sobre el bg cyan-50). Ahora `cyan-600` — más saturado, más TEI. El `!font-bold` con `!important` asegura que prevalece sobre `font-medium` base.
+
+**3. Barra vertical de child más visible**
+
+- Ancho: `w-[2px]` → `w-[3px]` (50% más visible).
+- Altura: `top-1.5 bottom-1.5` → `top-1 bottom-1` (cubre más del row).
+- Más fácil de detectar a primera vista.
+
+### Migración
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
+Sin cambios en API. Solo CSS interno.
+
 ## [1.4.1] — 2026-05-08
 
 ### Fix · 3 bugs visuales del Sidebar v1.4.0
