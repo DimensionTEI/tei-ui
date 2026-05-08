@@ -199,14 +199,18 @@ function SidebarItemRow({
         'group/sidebar-item relative flex items-center gap-3 rounded-md transition-colors',
         // Layout
         level === 0 ? 'px-3 py-2 text-sm' : 'pl-9 pr-3 py-1.5 text-[13px]',
-        // Estado base
-        !isActive && 'text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-text-primary)]',
-        // Active level 0 — bg tinted + label cyan
+        // Reposo level 0 — text-primary para mejor legibilidad
+        !isActive && level === 0 &&
+          'text-[var(--color-text-primary)] hover:bg-[var(--color-bg-subtle)]',
+        // Reposo level 1 — children un poco más suaves que parents
+        !isActive && level === 1 &&
+          'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]',
+        // Active level 0 — bg tinted + label cyan + bold
         isActive && level === 0 &&
-          'bg-[var(--color-cyan-50)] text-[var(--color-cyan-700)] font-semibold dark:bg-[rgb(26_163_224/0.15)] dark:text-[var(--color-cyan-300)]',
-        // Active level 1 — solo barra vertical lateral, sin bg
+          'bg-[var(--color-cyan-50)] text-[var(--color-cyan-700)] font-bold dark:bg-[rgb(26_163_224/0.18)] dark:text-[var(--color-cyan-300)]',
+        // Active level 1 — barra vertical lateral (CON content para Tailwind v4) + label cyan + bold
         isActive && level === 1 &&
-          'text-[var(--color-cyan-700)] font-semibold dark:text-[var(--color-cyan-300)] before:absolute before:left-3 before:top-1.5 before:bottom-1.5 before:w-0.5 before:rounded-full before:bg-[var(--color-cyan-500)]',
+          "text-[var(--color-cyan-700)] font-bold dark:text-[var(--color-cyan-300)] before:content-[''] before:absolute before:left-3 before:top-1.5 before:bottom-1.5 before:w-[2px] before:rounded-full before:bg-[var(--color-cyan-500)]",
       )}
     >
       {Icon && level === 0 && (

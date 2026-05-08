@@ -2,6 +2,38 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.1] — 2026-05-08
+
+### Fix · 3 bugs visuales del Sidebar v1.4.0
+
+**1. Barra vertical de child activo no se renderizaba**
+
+Tailwind v4 exige `content` explícito para pseudo-elements. Faltaba `before:content-['']` en la clase del child activo. Resultado: la barra cyan que debería marcar el child seleccionado no aparecía.
+
+Fix: añadido `before:content-['']` y barra de `w-[2px]` (más visible que `w-0.5`).
+
+**2. Texto de items demasiado claro en reposo**
+
+Items en reposo usaban `text-secondary` (gris medio) en lugar de `text-primary` (negro/blanco). Diferencia visible vs canónico TEI.
+
+Fix:
+- Level 0 reposo → `text-primary` (más legible).
+- Level 1 reposo → `text-secondary` (un poco más suave que parents, jerárquicamente correcto).
+
+**3. Active label no lo bastante destacado**
+
+`font-semibold` (600) → `font-bold` (700). El parent activo y child activo ahora destacan más sobre los items en reposo.
+
+Y un toque extra: bg active level 0 dark sube de `rgb(.../0.15)` a `rgb(.../0.18)` para más contraste sobre oxford navy.
+
+### Migración
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
+Sin cambios en API. Solo CSS interno del componente.
+
 ## [1.4.0] — 2026-05-08
 
 ### Cambiado · Sidebar canónico TEI completo (matching estilo.dimensiontei.com)
