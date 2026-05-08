@@ -213,8 +213,8 @@ function SidebarItemRow({
           className={cn(
             'ml-auto hidden shrink-0 rounded border px-1 font-mono text-[10px] font-semibold tabular-nums leading-tight md:inline-flex md:items-center',
             'border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)] text-[var(--color-text-muted)]',
-            'opacity-0 transition-opacity group-hover/sidebar-item:opacity-100',
-            isActive && 'opacity-70',
+            'transition-opacity opacity-60 group-hover/sidebar-item:opacity-100',
+            isActive && 'opacity-100',
           )}
         >
           g {item.shortcut}

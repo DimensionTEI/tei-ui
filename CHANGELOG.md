@@ -2,6 +2,17 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.3.1] — 2026-05-08
+
+### Fix · Sidebar shortcuts siempre visibles
+
+`<kbd>g d</kbd>` ahora se muestra **siempre** en items con `shortcut`, no solo en hover. Visibilidad gradual:
+
+- Reposo: `opacity-60` (visible pero discreto).
+- Hover o item activo: `opacity-100`.
+
+Patrón Linear/GitHub. Permite descubrir los atajos sin tener que pasar el ratón por encima.
+
 ## [1.3.0] — 2026-05-08
 
 ### Cambiado · Sidebar canónico TEI
