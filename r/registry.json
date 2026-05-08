@@ -569,7 +569,6 @@
       "description": "Primitivo TEI: sidebar",
       "dependencies": [],
       "registryDependencies": [
-        "separator",
         "utils"
       ]
     },

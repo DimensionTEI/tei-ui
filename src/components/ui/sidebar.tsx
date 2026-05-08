@@ -1,39 +1,38 @@
 'use client';
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { Separator } from '@/components/ui/separator';
 
 /**
- * Sidebar TEI — declarativo, framework-agnostic.
+ * Sidebar TEI canónico — declarativo, framework-agnostic.
  *
  * Soporta:
  * - Sub-items inline (`children`) que expanden bajo el padre activo.
- * - Atajos de teclado `g+letter` por item (vía prop `shortcut`).
- * - Franja vertical cyan en item activo (acento canónico TEI).
+ * - Atajos de teclado `g+letter` por item (`shortcut`), siempre visibles.
+ * - Tone por item (icono coloreado) y por section (kicker tonal).
+ * - Active styling distinto: parent con bg-cyan, child con barra lateral.
  *
- * El renderer del Link se inyecta para que sirva tanto en Next.js
- * (`next/link`) como en react-router o `<a>` plano.
+ * El renderer del Link se inyecta para Next.js / React Router / `<a>`.
  */
+
+export type Tone = 'cyan' | 'blue' | 'yellow' | 'coral' | 'ink';
 
 export type SidebarItem = {
   href: string;
   label: string;
   icon?: React.ComponentType<{ className?: string }>;
   active?: boolean;
-  /**
-   * Letra para el atajo `g+letra`. Ejemplo: `'d'` → el usuario pulsa
-   * `g` luego `d` para navegar aquí. Una letra por item; case-insensitive.
-   */
+  /** Letra para el atajo `g+letra`. Una letra por item. */
   shortcut?: string;
-  /**
-   * Sub-items renderizados inline cuando este item está activo o cuando
-   * alguno de los children está activo. Anidación de un nivel.
-   */
+  /** Sub-items renderizados inline cuando este item o un child está activo. */
   children?: SidebarItem[];
+  /** Tono del icono en reposo. En active state usa cyan. Default: ink (text-muted). */
+  tone?: Tone;
 };
 
 export type SidebarSection = {
   title?: string;
+  /** Tono del kicker (label de sección). Default: muted. */
+  tone?: Tone;
   items: SidebarItem[];
 };
 
@@ -42,13 +41,16 @@ export type SidebarProps = {
   sections: SidebarSection[];
   footer?: React.ReactNode;
   className?: string;
-  /** Cómo renderizar cada link. Por defecto un `<a>` plano. */
   renderLink?: (item: SidebarItem, children: React.ReactNode) => React.ReactNode;
-  /**
-   * Función que navega cuando un atajo `g+letra` coincide. Si no se pasa,
-   * se hace `window.location.href = href`.
-   */
   onShortcutNavigate?: (href: string) => void;
+};
+
+const iconToneClass: Record<Tone, string> = {
+  cyan:   'text-[var(--color-cyan-500)] dark:text-[var(--color-cyan-400)]',
+  blue:   'text-[var(--color-blue-500)] dark:text-[var(--color-blue-400)]',
+  yellow: 'text-[var(--color-yellow-500)] dark:text-[var(--color-yellow-400)]',
+  coral:  'text-[var(--color-coral-500)] dark:text-[var(--color-coral-400)]',
+  ink:    'text-[var(--color-text-muted)]',
 };
 
 function flattenItems(sections: SidebarSection[]): SidebarItem[] {
@@ -81,7 +83,7 @@ export function Sidebar({
 }: SidebarProps) {
   const allItems = React.useMemo(() => flattenItems(sections), [sections]);
 
-  // Atajos g+letter — escucha global, ignora inputs.
+  // Atajos g+letter
   React.useEffect(() => {
     const map = new Map<string, string>();
     for (const it of allItems) {
@@ -138,11 +140,18 @@ export function Sidebar({
       <div className="flex h-full flex-col p-3">
         {logo && <div className="mb-6 flex items-center gap-2 px-2">{logo}</div>}
 
-        <nav className="flex flex-1 flex-col gap-3 overflow-y-auto">
+        <nav className="flex flex-1 flex-col gap-5 overflow-y-auto">
           {sections.map((section, si) => (
             <div key={si} className="flex flex-col gap-1">
               {section.title && (
-                <p className="mb-1 px-3 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--color-text-muted)]">
+                <p
+                  className={cn(
+                    'mb-1 px-3',
+                    section.tone
+                      ? `tei-kicker-${section.tone}`
+                      : 'text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--color-text-muted)]',
+                  )}
+                >
                   {section.title}
                 </p>
               )}
@@ -155,16 +164,14 @@ export function Sidebar({
                   level={0}
                 />
               ))}
-              {si < sections.length - 1 && <Separator className="my-2" />}
             </div>
           ))}
         </nav>
 
         {footer && (
-          <>
-            <Separator className="my-3" />
-            <div>{footer}</div>
-          </>
+          <div className="mt-3 pt-3 border-t border-[var(--color-border-subtle)]">
+            {footer}
+          </div>
         )}
       </div>
     </aside>
@@ -189,36 +196,47 @@ function SidebarItemRow({
   const inner = (
     <span
       className={cn(
-        'group/sidebar-item relative flex items-center gap-3 rounded-md text-sm transition-colors',
-        level === 0 ? 'px-3 py-2' : 'pl-9 pr-3 py-1.5 text-[13px]',
-        isActive
-          ? 'bg-[var(--color-bg-tinted)] font-semibold text-[var(--color-text-heading)]'
-          : 'text-[var(--color-text-muted)] hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-text-primary)]',
-        // Stripe vertical cyan en activo (canónico TEI)
-        isActive && 'shadow-[inset_3px_0_0_0_var(--color-cyan-500)]',
+        'group/sidebar-item relative flex items-center gap-3 rounded-md transition-colors',
+        // Layout
+        level === 0 ? 'px-3 py-2 text-sm' : 'pl-9 pr-3 py-1.5 text-[13px]',
+        // Estado base
+        !isActive && 'text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-subtle)] hover:text-[var(--color-text-primary)]',
+        // Active level 0 — bg tinted + label cyan
+        isActive && level === 0 &&
+          'bg-[var(--color-cyan-50)] text-[var(--color-cyan-700)] font-semibold dark:bg-[rgb(26_163_224/0.15)] dark:text-[var(--color-cyan-300)]',
+        // Active level 1 — solo barra vertical lateral, sin bg
+        isActive && level === 1 &&
+          'text-[var(--color-cyan-700)] font-semibold dark:text-[var(--color-cyan-300)] before:absolute before:left-3 before:top-1.5 before:bottom-1.5 before:w-0.5 before:rounded-full before:bg-[var(--color-cyan-500)]',
       )}
     >
       {Icon && level === 0 && (
         <Icon
           className={cn(
             'h-4 w-4 shrink-0',
-            isActive ? 'text-[var(--color-cyan-500)] dark:text-[var(--color-cyan-400)]' : '',
+            isActive
+              ? 'text-[var(--color-cyan-500)] dark:text-[var(--color-cyan-400)]'
+              : iconToneClass[item.tone ?? 'ink'],
           )}
         />
       )}
       <span className="flex-1 truncate">{item.label}</span>
       {item.shortcut && (
-        <kbd
+        <span
           aria-hidden="true"
           className={cn(
-            'ml-auto hidden shrink-0 rounded border px-1 font-mono text-[10px] font-semibold tabular-nums leading-tight md:inline-flex md:items-center',
-            'border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)] text-[var(--color-text-muted)]',
+            'ml-auto hidden shrink-0 md:inline-flex items-center gap-0.5',
             'transition-opacity opacity-60 group-hover/sidebar-item:opacity-100',
             isActive && 'opacity-100',
           )}
         >
-          g {item.shortcut}
-        </kbd>
+          <kbd className="rounded border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-muted)]">
+            G
+          </kbd>
+          <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
+          <kbd className="rounded border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-muted)]">
+            {item.shortcut.toUpperCase()}
+          </kbd>
+        </span>
       )}
     </span>
   );
