@@ -210,7 +210,7 @@ function SidebarItemRow({
           'bg-[var(--color-cyan-50)] text-[var(--color-cyan-600)] !font-bold dark:bg-[rgb(26_163_224/0.20)] dark:text-[var(--color-cyan-300)]',
         // Active level 1 — barra vertical lateral 3px + label cyan vibrante + bold
         isActive && level === 1 &&
-          "text-[var(--color-cyan-600)] !font-bold dark:text-[var(--color-cyan-300)] before:content-[''] before:absolute before:left-3 before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-[var(--color-cyan-500)]",
+          "text-[var(--color-cyan-600)] !font-bold dark:text-[var(--color-cyan-300)] before:content-[''] before:absolute before:left-[14px] before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-[var(--color-cyan-500)]",
       )}
     >
       {Icon && level === 0 && (
@@ -233,11 +233,11 @@ function SidebarItemRow({
             isActive && 'opacity-100',
           )}
         >
-          <kbd className="rounded border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-muted)]">
+          <kbd className="rounded border border-[var(--color-border-default)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-secondary)] dark:bg-[var(--color-bg-subtle)]">
             G
           </kbd>
           <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-          <kbd className="rounded border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-muted)]">
+          <kbd className="rounded border border-[var(--color-border-default)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-secondary)] dark:bg-[var(--color-bg-subtle)]">
             {item.shortcut.toUpperCase()}
           </kbd>
         </span>
@@ -249,7 +249,12 @@ function SidebarItemRow({
     <>
       {renderLink(item, inner)}
       {expanded && item.children && item.children.length > 0 && (
-        <div className="flex flex-col gap-0.5">
+        <div className="relative flex flex-col gap-0.5">
+          {/* Guía vertical que recorre todos los children — patrón TEI canónico */}
+          <span
+            aria-hidden="true"
+            className="absolute left-[15px] top-1 bottom-1 w-px bg-[var(--color-border-default)]"
+          />
           {item.children.map((child) => (
             <SidebarItemRow
               key={child.href}

@@ -2,6 +2,31 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.3] — 2026-05-08
+
+### Fix · 2 detalles canónicos del Sidebar pendientes
+
+**1. Guía vertical en los submenús (tree indent)**
+
+Faltaba la línea sutil que recorre todo el bloque de children expandido (no solo el item activo). Patrón visual canónico TEI: la guía marca la jerarquía de árbol incluso cuando ningún child está activo.
+
+Implementación: `<span absolute left-[15px] top-1 bottom-1 w-px bg-border-default>` dentro del contenedor de children. La barra cyan del item activo (3px en `left-[14px]`) sigue por encima de la guía con su color saturado, sustituyendo visualmente el segmento correspondiente al item activo.
+
+**2. Shortcuts con más contraste**
+
+Los `<kbd>` apenas se leían sobre el bg del sidebar:
+- Border: `border-subtle` (ink-200) → `border-default` (ink-300). Más visible.
+- Texto: `text-muted` (ink-500) → `text-secondary` (ink-700). Más oscuro, más legible.
+- Dark mode bg: `bg-elevated` (oxford-700) → `bg-subtle` (oxford-700) — sin cambio funcional, comentario por consistencia.
+
+### Migración
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
+Sin cambios en API. Solo CSS interno.
+
 ## [1.4.2] — 2026-05-08
 
 ### Fix · polish visual final del Sidebar (matching canónico TEI 100%)
