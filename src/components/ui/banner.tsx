@@ -5,17 +5,18 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const bannerVariants = cva(
-  'flex w-full items-center gap-3 rounded-md border px-4 py-3 text-sm font-medium',
+  'flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-sm font-medium',
   {
     variants: {
       variant: {
-        info: 'border-[var(--tei-info)]/40 bg-[var(--tei-info)]/5 text-[var(--tei-info)]',
+        info:
+          'bg-[var(--color-cyan-50)] border-[var(--color-cyan-200)] text-[var(--color-cyan-800)] [&_svg]:text-[var(--color-cyan-700)] dark:bg-[rgb(26_163_224/0.15)] dark:border-[rgb(26_163_224/0.45)] dark:text-[var(--color-cyan-200)] dark:[&_svg]:text-[var(--color-cyan-300)]',
         success:
-          'border-[var(--tei-success)]/40 bg-[var(--tei-success)]/5 text-[var(--tei-success)]',
+          'bg-[var(--color-success-50)] border-[var(--color-success-300)] text-[var(--color-success-700)] [&_svg]:text-[var(--color-success-600)]',
         warning:
-          'border-[var(--tei-warning)]/40 bg-[var(--tei-warning)]/5 text-[var(--tei-warning)]',
+          'bg-[var(--color-yellow-50)] border-[var(--color-yellow-300)] text-[var(--color-yellow-800)] [&_svg]:text-[var(--color-yellow-700)] dark:bg-[rgb(245_195_51/0.18)] dark:border-[rgb(245_195_51/0.45)] dark:text-[var(--color-yellow-300)] dark:[&_svg]:text-[var(--color-yellow-300)]',
         danger:
-          'border-[var(--tei-danger)]/40 bg-[var(--tei-danger)]/5 text-[var(--tei-danger)]',
+          'bg-[var(--color-coral-50)] border-[var(--color-coral-300)] text-[var(--color-coral-700)] [&_svg]:text-[var(--color-coral-600)] dark:bg-[rgb(232_90_61/0.18)] dark:border-[rgb(232_90_61/0.45)] dark:text-[var(--color-coral-200)] dark:[&_svg]:text-[var(--color-coral-300)]',
       },
     },
     defaultVariants: { variant: 'info' },
