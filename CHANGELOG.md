@@ -2,6 +2,60 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.3.0] — 2026-05-08
+
+### Cambiado · Sidebar canónico TEI
+
+El primitivo `sidebar` se extiende para igualar el comportamiento del sistema TEI canónico (`estilo.dimensiontei.com`):
+
+**1. Sub-items inline (`items[].children`)** — sub-navegación que se expande **dentro del mismo aside**, debajo del item padre activo. Anidación de un nivel. Reemplaza el patrón anterior de "sub-nav en main panel" para casos donde la sub-navegación es estructural a la sección (admin/empresa/{configuracion,usuarios,licencias…}).
+
+**2. Atajos de teclado `g+letra` (`items[].shortcut`)** — al estilo Linear/GitHub. El usuario pulsa `g`, luego una letra (`d`, `c`, `e`…) y navega al item correspondiente. El handler es global pero respeta inputs/textareas/contenteditable. Ventana de 1.2s tras pulsar `g`. Visible en hover como `<kbd>g d</kbd>` en el item.
+
+**3. Stripe vertical cyan en item activo** — `box-shadow: inset 3px 0 0 0 var(--color-cyan-500)`. Acento canónico TEI que faltaba en v1.2.0.
+
+**4. Visual refinado:**
+- Icono del item activo en cyan (no en text-strong).
+- Bg del item activo: `var(--color-bg-tinted)` (cyan-tint) en lugar de `surface`.
+- Section title en 11px bold uppercase tracking 0.14em (canónico).
+- Indentación de sub-items: 36px (alineado con el icono del padre).
+
+**5. Prop nueva `onShortcutNavigate`** — el consumidor pasa `(href) => router.push(href)` para integración con Next.js / React Router. Si no se pasa, se hace `window.location.href = href` (recarga, válido para multi-page).
+
+### API
+
+```ts
+type SidebarItem = {
+  href: string;
+  label: string;
+  icon?: ComponentType<{ className?: string }>;
+  active?: boolean;
+  shortcut?: string;            // 'd', 'c', 'e'… (una letra)
+  children?: SidebarItem[];     // sub-items inline
+};
+
+<Sidebar
+  sections={sections}
+  renderLink={(item, children) => <Link href={item.href}>{children}</Link>}
+  onShortcutNavigate={(href) => router.push(href)}
+/>
+```
+
+Cero breaking change en proyectos que ya usan v1.2.0 (los nuevos props son opcionales).
+
+### Migración para consumidores
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
+Si el consumidor venía usando una arquitectura "sub-nav en main panel" (patrón Vercel/Stripe Settings) y quiere volver al patrón TEI canónico de inline-expansion, debe:
+
+1. Mover los items del sub-nav a `children` del item padre en la factory de sections.
+2. Eliminar el componente `<EmpresaSubNav>` (o equivalente) del shell de la página.
+3. Añadir `shortcut: 'letra'` a los items que quiera activar con teclado.
+4. Pasar `onShortcutNavigate={(href) => router.push(href)}` al Sidebar.
+
 ## [1.2.0] — 2026-05-08
 
 ### Cambiado · componentes vibrantes (matching estilo.dimensiontei.com)

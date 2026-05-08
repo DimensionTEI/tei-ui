@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "components/ui/kicker.tsx",
-      "content": "import * as React from 'react';\nimport { cn } from '@/lib/utils';\n\ntype Tone = 'cyan' | 'blue' | 'yellow' | 'coral' | 'ink';\n\nexport interface KickerProps extends React.HTMLAttributes<HTMLParagraphElement> {\n  tone?: Tone;\n}\n\n/**\n * Kicker — etiqueta tipográfica de sección al estilo TEI canónico.\n * 11px bold uppercase con tracking 0.14em y color tonal.\n *\n * Ejemplo:\n *   <Kicker tone=\"cyan\">Componentes · Feedback</Kicker>\n *   <h1>Título principal</h1>\n */\nexport const Kicker = React.forwardRef<HTMLParagraphElement, KickerProps>(\n  ({ tone = 'cyan', className, ...props }, ref) => (\n    <p ref={ref} className={cn(`tei-kicker-${tone}`, className)} {...props} />\n  ),\n);\nKicker.displayName = 'Kicker';\n",
+      "content": "import * as React from 'react';\r\nimport { cn } from '@/lib/utils';\r\n\r\ntype Tone = 'cyan' | 'blue' | 'yellow' | 'coral' | 'ink';\r\n\r\nexport interface KickerProps extends React.HTMLAttributes<HTMLParagraphElement> {\r\n  tone?: Tone;\r\n}\r\n\r\n/**\r\n * Kicker — etiqueta tipográfica de sección al estilo TEI canónico.\r\n * 11px bold uppercase con tracking 0.14em y color tonal.\r\n *\r\n * Ejemplo:\r\n *   <Kicker tone=\"cyan\">Componentes · Feedback</Kicker>\r\n *   <h1>Título principal</h1>\r\n */\r\nexport const Kicker = React.forwardRef<HTMLParagraphElement, KickerProps>(\r\n  ({ tone = 'cyan', className, ...props }, ref) => (\r\n    <p ref={ref} className={cn(`tei-kicker-${tone}`, className)} {...props} />\r\n  ),\r\n);\r\nKicker.displayName = 'Kicker';\r\n",
       "type": "registry:ui",
       "target": "components/ui/kicker.tsx"
     }
