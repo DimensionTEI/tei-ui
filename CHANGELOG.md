@@ -2,6 +2,27 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.5] — 2026-05-09
+
+### Fix · contraste real del active label
+
+**Problema:** cyan-800 sobre cyan-50 tiene contraste técnico (8:1) pero visualmente queda apagado porque ambos pertenecen a la misma familia cromática. El cerebro percibe poca diferencia. Esto era visible en producción incluso con WCAG AA cumplido.
+
+**Fix:** salir del cyan-family para el active text y usar oxford (navy oscuro, casi negro). El bg sigue siendo cyan-50 (cyan-tint suave), pero el texto pasa a navy → contraste visual MASIVO + canónico TEI cumplido (oxford es color de marca).
+
+- Active level 0 (parent): `cyan-800` → `oxford-800` (#0f223a — navy casi negro).
+- Active level 1 (child): `cyan-700` → `cyan-800` (un tono más oscuro, dentro de cyan family pero más legible).
+
+**Dark mode:** sin oxford (rompería sobre fondo navy ya oscuro).
+- Parent dark active: `cyan-200` → `cyan-100` (más claro sobre bg-tinted oxford).
+- Child dark active: `cyan-300` → `cyan-200`.
+
+### Migración
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
 ## [1.4.4] — 2026-05-09
 
 ### Fix · contraste del Sidebar (final 100%)
