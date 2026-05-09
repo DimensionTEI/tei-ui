@@ -205,12 +205,12 @@ function SidebarItemRow({
         // Reposo level 1 — children un poco más suaves que parents
         !isActive && level === 1 &&
           'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]',
-        // Active level 0 — bg cyan + label oxford (navy oscuro, máximo contraste) + bold
+        // Active level 0 — bg cyan + label theme-aware (oxford light / blanco dark) + bold
         isActive && level === 0 &&
-          'bg-[var(--color-cyan-50)] text-[var(--color-oxford-800)] !font-bold dark:bg-[rgb(26_163_224/0.20)] dark:text-[var(--color-cyan-100)]',
-        // Active level 1 — barra vertical 3px + label cyan-800 (un tono más oscuro) + bold
+          'bg-[var(--color-cyan-50)] text-[var(--color-text-heading)] !font-bold dark:bg-[rgb(26_163_224/0.20)]',
+        // Active level 1 — barra vertical 3px + label theme-aware + bold
         isActive && level === 1 &&
-          "text-[var(--color-cyan-800)] !font-bold dark:text-[var(--color-cyan-200)] before:content-[''] before:absolute before:left-[14px] before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-[var(--color-cyan-500)]",
+          "text-[var(--color-text-heading)] !font-bold before:content-[''] before:absolute before:left-[14px] before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-[var(--color-cyan-500)]",
       )}
     >
       {Icon && level === 0 && (

@@ -2,6 +2,33 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.6] — 2026-05-09
+
+### Fix · active text theme-aware (sin `dark:` variant)
+
+**Problema descubierto en producción** (gracias Adrián por el debugging del CSS): el selector `dark:text-[var(--color-cyan-100)]` pisaba al `text-[var(--color-oxford-800)]` cuando el navegador detecta `.dark` (incluso en estados ambiguos donde la app no es propiamente dark mode visual).
+
+**Fix:** eliminar la dependencia de `dark:` variant. Usar `var(--color-text-heading)` que ya es theme-aware en los tokens:
+
+- Light: `ink-950` (#080c14, casi negro) → máximo contraste sobre cyan-50 bg.
+- Dark: `#ffffff` (blanco) → máximo contraste sobre bg-tinted oxford.
+
+Aplicado a parent y child activos. Sin `dark:` modifiers — el CSS var resuelve automáticamente con el tema.
+
+```tsx
+// Antes (frágil ante override de .dark):
+text-[var(--color-oxford-800)] dark:text-[var(--color-cyan-100)]
+
+// Ahora (theme-aware nativo):
+text-[var(--color-text-heading)]
+```
+
+### Migración
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
 ## [1.4.5] — 2026-05-09
 
 ### Fix · contraste real del active label
