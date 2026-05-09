@@ -2,6 +2,33 @@
 
 Todas las releases del registry `tei-ui`. Sigue [Keep a Changelog](https://keepachangelog.com/) y [SemVer](https://semver.org/).
 
+## [1.4.4] — 2026-05-09
+
+### Fix · contraste del Sidebar (final 100%)
+
+**1. Active label más oscuro**
+
+En v1.4.2 cambié `cyan-700` → `cyan-600` pensando "más saturado". **Era al revés** — cyan-600 (#0086c2) es MÁS CLARO que cyan-700 (#0a6c9c) en la escala TEI. Resultado: parent activo se veía pálido vs el canónico que está claramente más oscuro.
+
+Fix:
+- Active level 0 (parent): `cyan-700` → `cyan-800` (#0f5980, oscuro vibrante).
+- Active level 1 (child): `cyan-600` → `cyan-700` (oscurecer un grado).
+- Dark mode: `cyan-300` → `cyan-200` para parent (más claro sobre oxford navy).
+
+**2. Shortcuts con MUCHO más contraste**
+
+Las kbd seguían apenas leíbles tras v1.4.3. Salto agresivo:
+- Border: `border-default` → `border-strong` (ink-400, claramente visible).
+- Texto: `text-secondary` → `text-primary` (ink-900, casi negro).
+- Bg: `bg-elevated` → `bg` (asegura contraste sobre cualquier surface).
+- Punto separador: `font-bold` añadido para que destaque entre las dos kbd.
+
+### Migración
+
+```bash
+npx shadcn@latest add https://raw.githubusercontent.com/DimensionTEI/tei-ui/main/r/sidebar.json --overwrite
+```
+
 ## [1.4.3] — 2026-05-08
 
 ### Fix · 2 detalles canónicos del Sidebar pendientes

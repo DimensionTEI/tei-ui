@@ -205,12 +205,12 @@ function SidebarItemRow({
         // Reposo level 1 — children un poco más suaves que parents
         !isActive && level === 1 &&
           'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]',
-        // Active level 0 — bg tinted + label cyan vibrante + bold
+        // Active level 0 — bg tinted + label cyan oscuro + bold
         isActive && level === 0 &&
-          'bg-[var(--color-cyan-50)] text-[var(--color-cyan-600)] !font-bold dark:bg-[rgb(26_163_224/0.20)] dark:text-[var(--color-cyan-300)]',
-        // Active level 1 — barra vertical lateral 3px + label cyan vibrante + bold
+          'bg-[var(--color-cyan-50)] text-[var(--color-cyan-800)] !font-bold dark:bg-[rgb(26_163_224/0.20)] dark:text-[var(--color-cyan-200)]',
+        // Active level 1 — barra vertical lateral 3px + label cyan oscuro + bold
         isActive && level === 1 &&
-          "text-[var(--color-cyan-600)] !font-bold dark:text-[var(--color-cyan-300)] before:content-[''] before:absolute before:left-[14px] before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-[var(--color-cyan-500)]",
+          "text-[var(--color-cyan-700)] !font-bold dark:text-[var(--color-cyan-300)] before:content-[''] before:absolute before:left-[14px] before:top-1 before:bottom-1 before:w-[3px] before:rounded-full before:bg-[var(--color-cyan-500)]",
       )}
     >
       {Icon && level === 0 && (
@@ -233,11 +233,11 @@ function SidebarItemRow({
             isActive && 'opacity-100',
           )}
         >
-          <kbd className="rounded border border-[var(--color-border-default)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-secondary)] dark:bg-[var(--color-bg-subtle)]">
+          <kbd className="rounded border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-primary)] dark:bg-[var(--color-bg-subtle)]">
             G
           </kbd>
-          <span className="text-[10px] text-[var(--color-text-muted)]">·</span>
-          <kbd className="rounded border border-[var(--color-border-default)] bg-[var(--color-bg-elevated)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-secondary)] dark:bg-[var(--color-bg-subtle)]">
+          <span className="text-[10px] font-bold text-[var(--color-text-secondary)]">·</span>
+          <kbd className="rounded border border-[var(--color-border-strong)] bg-[var(--color-bg)] px-1 font-mono text-[10px] font-bold leading-tight text-[var(--color-text-primary)] dark:bg-[var(--color-bg-subtle)]">
             {item.shortcut.toUpperCase()}
           </kbd>
         </span>
